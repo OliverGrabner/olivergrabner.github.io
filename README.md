@@ -18,6 +18,8 @@
 ## Projects
 ### Pokemon Card Generator
 
+[Click Here to learn more!](https://github.com/OliverGrabner/DCGAN-Pokemon-Card-Generator)
+
 This project involved designing and training a Deep Convolutional Generative Adversarial Network (DCGAN) to generate Pokémon card images from scratch. The process included preprocessing a dataset of Pokémon card images, implementing the DCGAN architecture, and fine-tuning the network to produce high-quality, realistic outputs.
 
 ![Final Production Output](/assets/img/120EP_final%20prod.png)
