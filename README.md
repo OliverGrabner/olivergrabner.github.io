@@ -63,4 +63,3 @@ Can you tell which is real vs fake?
 </p>
 
 ## Publications
-Coming soon! Paper to be released in *Winter 2024*
