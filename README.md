@@ -6,7 +6,7 @@
 ## Work Experience
 **Incoming SWE Intern @ Samsung Semiconductors (Summer 2025)**
 
-**Undergraduate Research Assistant @ Texas A&M University - InfoLab (September 2024 - Present)**
+**Undergraduate Researcher  @ Texas A&M University - InfoLab (September 2024 - Present)**
 - Enhanced transcript summarization using LLMs and NLP techniques, improving summarization through disfluency injections.
 - Developed and fine-tuned few-shot prompts, optimizing LLM parameters to compare the effectiveness of injection strategies.
 
@@ -18,7 +18,14 @@
 ## Projects
 ### Pokemon Card Generator
 
-[Click Here to learn more!](https://github.com/OliverGrabner/DCGAN-Pokemon-Card-Generator)
+[ 🐈 GITHUB REPO](https://github.com/OliverGrabner/DCGAN-Pokemon-Card-Generator)
+
+<p>
+  <a href="https://olivergrabner.github.io/fakemon-card-simulator/index.html" target="_blank" 
+     style="display: inline-block; padding: 10px 20px; background: #28a745; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;">
+    ‼️ Fun Card Opener Website ‼️
+  </a>
+</p>
 
 This project involved designing and training a Deep Convolutional Generative Adversarial Network (DCGAN) to generate Pokémon card images from scratch. The process included preprocessing a dataset of Pokémon card images, implementing the DCGAN architecture, and fine-tuning the network to produce high-quality, realistic outputs.
 
@@ -63,3 +70,7 @@ Can you tell which is real vs fake?
 </p>
 
 ## Publications
+### Student Research Week Poster
+Here is the poster I made for student research week at TAMU
+
+![SRW_OliverGrabner_Poster](/assets/img/SRW_Oliver_Grabner.pdf)
