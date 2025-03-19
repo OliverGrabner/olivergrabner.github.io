@@ -73,5 +73,5 @@ Can you tell which is real vs fake?
 ### Student Research Week Poster
 Here is the poster I made for student research week at TAMU
 <p align="center">
- <img src="/assets/img/SRW_Oliver_Grabner.pdf" alt="SRW OliverGrabner Poster" width="200">
+ <img src="/assets/img/SRW_Oliver_Grabner.png" alt="SRW OliverGrabner Poster" width="200">
 </p>
