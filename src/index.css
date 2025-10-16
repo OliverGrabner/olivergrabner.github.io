@@ -7,12 +7,11 @@ html {
 
 body {
   margin: 0;
-  /* Anthropic uses serif for body text, Inter for headings */
   font-family: 'Lora', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Anthropic brand colors - warm cream background */
+  /* Background colors */
   background-color: #FAF7F2;
   background-image:
     linear-gradient(rgba(193, 95, 60, 0.04) 1px, transparent 1px),
