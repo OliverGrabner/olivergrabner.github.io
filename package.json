@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/OliverGrabner/olivergrabner.github.io/issues"
   },
-  "homepage": "https://github.com/OliverGrabner/olivergrabner.github.io#readme",
+  "homepage": "https://olivergrabner.github.io",
   "description": "",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.14",
