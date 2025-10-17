@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 
 export default function Hero() {
   return (
@@ -35,7 +36,7 @@ export default function Hero() {
               View Projects
             </Link>
             <Link
-              to="/projects"
+              to="/research"
               className="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300"
               style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
               onMouseEnter={(e) => {
@@ -47,8 +48,40 @@ export default function Hero() {
                 e.currentTarget.style.color = '#C15F3C';
               }}
             >
-              [Research] (WIP)
+              Research
             </Link>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex gap-6 pt-2 animate-[fadeIn_0.8s_ease-out_1.4s_both]">
+            <a
+              href="https://github.com/OliverGrabner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-110"
+              style={{ color: '#C15F3C' }}
+              aria-label="GitHub"
+            >
+              <FaGithub size={28} />
+            </a>
+            <a
+              href="mailto:olivergrabner.cs@gmail.com"
+              className="transition-all duration-300 hover:scale-110"
+              style={{ color: '#C15F3C' }}
+              aria-label="Email"
+            >
+              <FaEnvelope size={28} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/olivergrabner/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-110"
+              style={{ color: '#C15F3C' }}
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={28} />
+            </a>
           </div>
         </div>
 

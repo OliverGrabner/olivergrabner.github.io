@@ -13,11 +13,43 @@ export default function Projects() {
     },
     {
       title: '🧋 Boba Shop POS System',
-      date: 'Oct 2025',
+      date: 'Oct 2024',
       images: ['/POSrelationalDatabase.png'],
       description: 'Developed a full-stack Java POS system with a Swing GUI client and a cloud-hosted AWS PostgreSQL backend. Scripted the generation of $5M+ in realistic sales data to test and populate a relational PostgreSQL schema. Implemented a manager dashboard, authoring 15+ SQL queries to generate reports on sales trends and inventory.',
       technologies: ['Java', 'Swing', 'PostgreSQL', 'AWS'],
-      githubLink: 'https://github.com/yourusername/pos-system'
+    },
+    {
+      title: 'Reville Rankings',
+      date: 'Oct 2023',
+      images: ['/revrankings.png'],
+      description: 'Python-based data analysis tool that processes Texas A&M University\'s public grade distribution data from multiple years. Identifies top-performing professors by GPA and provides detailed grade breakdowns. Features an interactive PyQt5 GUI with matplotlib visualizations for easy interpretation of grade distributions across different course sections.',
+      technologies: ['Python', 'pandas', 'matplotlib', 'PyQt5'],
+      githubLink: 'https://github.com/OliverGrabner/RevilleRankings'
+    }, 
+    {
+      title: 'Y86-64 Processor Design',
+      date: 'March 2025',
+      images: ['/y86.png', '/registerfile.png'],
+      description: 'Designed a 64-bit Y86-64 CPU in Logisim with 19 unique instructions and 15 registers across 6 pipeline stages. Engineered data and control logic to manage a 4 KB memory, fetching variable-length 10-byte instructions. Validated design by authoring test programs for all 19 instructions, achieving 100% functional parity.',
+      technologies: ['Logisim', 'Y86-64 ISA', 'Assembly'],
+      githubLink: 'https://github.com/OliverGrabner/Y86-64-Processor-Design'
+    },
+    {
+      title: 'KFW Law Firm Website',
+      date: 'July 2024',
+      images: ['/kfwlaw.mp4', '/kfwclient.png'],
+      description: 'Re-engineered a modern replacement for law firm\'s website serving 700+ monthly visitors. Acted as sole developer, translating non-technical client needs into a functional web app. Integrated Google Analytics 4 to provide actionable insights on site traffic and user engagement, improving user experience and client conversion.',
+      technologies: ['React', 'Vite', 'Tailwind CSS', 'Netlify'],
+      demoLink: 'https://kfwlaw.netlify.app/'
+    },
+    {
+      title: 'Personal Portfolio',
+      date: 'October 2025',
+      images: ['/website.png'],
+      description: 'Modern, responsive portfolio website built with React and TypeScript. Features smooth animations, dynamic routing, and a clean design system. Showcases projects with an interactive card carousel and integrates social media links. Deployed on GitHub Pages with continuous integration.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+      githubLink: 'https://github.com/OliverGrabner/olivergrabner.github.io',
+      demoLink: 'https://olivergrabner.github.io'
     }
   ];
 

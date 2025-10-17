@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import TechIcon from './TechIcon';
 
 interface ProjectCardProps {
@@ -107,7 +105,7 @@ export default function ProjectCard({
                 style={{ borderColor: '#C15F3C' }}
                 aria-label="Previous image"
               >
-                <FontAwesomeIcon icon={faChevronLeft} className="w-3.5 h-3.5" />
+                <FaChevronLeft className="w-3.5 h-3.5" />
               </button>
 
               <div className="flex gap-1.5">
@@ -132,7 +130,7 @@ export default function ProjectCard({
                 style={{ borderColor: '#C15F3C' }}
                 aria-label="Next image"
               >
-                <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5" />
+                <FaChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
           )}
@@ -162,7 +160,7 @@ export default function ProjectCard({
                 onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
               >
-                <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
+                <FaGithub size={28} />
                 <span>GitHub</span>
               </a>
             )}
@@ -176,7 +174,7 @@ export default function ProjectCard({
                 onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
               >
-                <FontAwesomeIcon icon={faExternalLinkAlt} className="w-4 h-4" />
+                <FaExternalLinkAlt size={28} />
                 <span>Live Demo</span>
               </a>
             )}
