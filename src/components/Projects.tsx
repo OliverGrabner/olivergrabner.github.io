@@ -5,7 +5,7 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4'],
+      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/Loss_training.png', '/dcganarchitecture.png'],
       description: 'Full-stack web app with real-time AI card generation using DCGAN. Open card packs, generate unique cards via REST API, and save favorites. Trained PyTorch model on 11K+ Pokémon cards with split deployment architecture.',
       technologies: ['Python', 'PyTorch', 'FastAPI', 'JavaScript', 'Docker'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
