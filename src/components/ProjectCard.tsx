@@ -53,73 +53,64 @@ export default function ProjectCard({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
-        <div className="md:col-span-2 relative group" style={{ perspective: '1000px' }}>
-          <div className="relative" style={{ paddingTop: '16px', paddingLeft: '16px' }}>
-            {images.map((img, idx) => {
-              const offset = idx - currentImageIndex;
-              const isVisible = idx >= currentImageIndex && idx < currentImageIndex + 3;
-              const stackIndex = idx - currentImageIndex;
+        <div className="md:col-span-2">
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-sm" style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
+              {images.map((img, idx) => {
+                const offset = idx - currentImageIndex;
+                const isVideo = img.endsWith('.mp4') || img.endsWith('.webm');
 
-              return (
-                <div
-                  key={idx}
-                  className="absolute top-0 left-0 w-full transition-all duration-500 ease-out"
-                  style={{
-                    transform: isVisible
-                      ? `translate(${-stackIndex * 8}px, ${stackIndex * 8}px) scale(${1 - stackIndex * 0.03})`
-                      : offset < 0
-                        ? 'translate(-100%, 0) rotate(-10deg) scale(0.8)'
-                        : 'translate(120%, 0) rotate(10deg) scale(0.8)',
-                    opacity: isVisible ? 1 - stackIndex * 0.3 : 0,
-                    zIndex: images.length - idx,
-                    pointerEvents: idx === currentImageIndex ? 'auto' : 'none',
-                    filter: stackIndex > 0 ? 'brightness(0.85)' : 'brightness(1)'
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt={`${title} - Image ${idx + 1}`}
-                    className="w-full h-auto object-cover rounded-sm"
+                return (
+                  <div
+                    key={idx}
+                    className={`${idx === 0 ? 'relative' : 'absolute top-0 left-0'} w-full transition-all duration-500 ease-out`}
                     style={{
-                      boxShadow: stackIndex === 0
-                        ? '0 8px 24px rgba(0, 0, 0, 0.15)'
-                        : '0 4px 12px rgba(0, 0, 0, 0.1)'
+                      transform: offset === 0
+                        ? 'translate(0, 0) rotate(0deg) scale(1)'
+                        : offset < 0
+                          ? 'translate(-120%, 0) rotate(-15deg) scale(0.8)'
+                          : 'translate(120%, 0) rotate(15deg) scale(0.8)',
+                      opacity: offset === 0 ? 1 : 0,
+                      zIndex: offset === 0 ? 10 : 0,
+                      pointerEvents: offset === 0 ? 'auto' : 'none',
+                      visibility: idx === 0 || offset === 0 ? 'visible' : 'hidden'
                     }}
-                  />
-                </div>
-              );
-            })}
-
-            <img
-              src={images[0]}
-              alt=""
-              className="w-full h-auto object-cover rounded-sm invisible"
-            />
+                  >
+                    {isVideo ? (
+                      <video
+                        src={img}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-auto object-cover block"
+                      />
+                    ) : (
+                      <img
+                        src={img}
+                        alt={`${title} - Image ${idx + 1}`}
+                        className="w-full h-auto object-cover block"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {images.length > 1 && (
-            <>
+            <div className="flex items-center justify-center gap-3 mt-3">
               <button
                 onClick={previousImage}
                 disabled={currentImageIndex === 0}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed z-50"
-                style={{ backdropFilter: 'blur(4px)' }}
+                className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                style={{ borderColor: '#C15F3C' }}
                 aria-label="Previous image"
               >
-                <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4" />
+                <FontAwesomeIcon icon={faChevronLeft} className="w-3.5 h-3.5" />
               </button>
 
-              <button
-                onClick={nextImage}
-                disabled={currentImageIndex === images.length - 1}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed z-50"
-                style={{ backdropFilter: 'blur(4px)' }}
-                aria-label="Next image"
-              >
-                <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4" />
-              </button>
-
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-50">
+              <div className="flex gap-1.5">
                 {images.map((_, idx) => (
                   <button
                     key={idx}
@@ -133,7 +124,17 @@ export default function ProjectCard({
                   />
                 ))}
               </div>
-            </>
+
+              <button
+                onClick={nextImage}
+                disabled={currentImageIndex === images.length - 1}
+                className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                style={{ borderColor: '#C15F3C' }}
+                aria-label="Next image"
+              >
+                <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5" />
+              </button>
+            </div>
           )}
         </div>
 

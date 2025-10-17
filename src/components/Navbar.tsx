@@ -29,6 +29,17 @@ export default function Navbar() {
                 Projects
               </span>
             </Link>
+            <Link
+              to="/research"
+              className="text-lg font-medium transition-colors"
+              style={{ color: '#000000' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#C15F3C'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+            >
+              <span className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#C15F3C] after:transition-all hover:after:w-full">
+                Research
+              </span>
+            </Link>
             <a
               href="/resume.pdf"
               target="_blank"

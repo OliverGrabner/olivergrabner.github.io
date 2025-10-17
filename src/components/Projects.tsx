@@ -5,11 +5,19 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon-simulator.png', '/fakemon-simulator.png','/fakemon-simulator.png'],
+      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4'],
       description: 'Full-stack web app with real-time AI card generation using DCGAN. Open card packs, generate unique cards via REST API, and save favorites. Trained PyTorch model on 11K+ Pokémon cards with split deployment architecture.',
       technologies: ['Python', 'PyTorch', 'FastAPI', 'JavaScript', 'Docker'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
       demoLink: 'https://fakemon-card-simulator.vercel.app'
+    },
+    {
+      title: '🧋 Boba Shop POS System',
+      date: 'Oct 2025',
+      images: ['/POSrelationalDatabase.png'],
+      description: 'Developed a full-stack Java POS system with a Swing GUI client and a cloud-hosted AWS PostgreSQL backend. Scripted the generation of $5M+ in realistic sales data to test and populate a relational PostgreSQL schema. Implemented a manager dashboard, authoring 15+ SQL queries to generate reports on sales trends and inventory.',
+      technologies: ['Java', 'Swing', 'PostgreSQL', 'AWS'],
+      githubLink: 'https://github.com/yourusername/pos-system'
     }
   ];
 
