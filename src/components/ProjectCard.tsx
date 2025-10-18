@@ -137,7 +137,7 @@ export default function ProjectCard({
         </div>
 
         <div className="md:col-span-3 flex flex-col">
-          <p className="text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Lora, serif', fontSize: '15px' }}>
+          <p className="text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Lora, serif', fontSize: '15px', whiteSpace: 'pre-line' }}>
             {description}
           </p>
 

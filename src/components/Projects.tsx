@@ -5,18 +5,18 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/Loss_training.png', '/dcganarchitecture.png'],
-      description: 'Full-stack web app with real-time AI card generation using DCGAN. Open card packs, generate unique cards via REST API, and save favorites. Trained PyTorch model on 11K+ Pokémon cards with split deployment architecture.',
-      technologies: ['Python', 'PyTorch', 'FastAPI', 'JavaScript', 'Docker'],
+      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
+      description: 'In this project I built a Deep Convolutional GAN (DCGAN) with a unique architecture to generate 96x64 images. \n I also built an RESTful API to dynamically support card generations in a front-end showcase website. \n The model itself was trained on 11,000 pokemon cards on a NVIDIA RTX 3050 Laptop GPU for 13 hours. I containerized my backend with Docker and deployed via Render with a Vercel hosted client.',
+      technologies: ['Python', 'PyTorch', 'FastAPI', 'JavaScript', 'Docker', 'Vercel', 'Render'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
       demoLink: 'https://fakemon-card-simulator.vercel.app'
     },
     {
       title: '🧋 Boba Shop POS System',
       date: 'Oct 2024',
-      images: ['/POSrelationalDatabase.png'],
-      description: 'Developed a full-stack Java POS system with a Swing GUI client and a cloud-hosted AWS PostgreSQL backend. Scripted the generation of $5M+ in realistic sales data to test and populate a relational PostgreSQL schema. Implemented a manager dashboard, authoring 15+ SQL queries to generate reports on sales trends and inventory.',
-      technologies: ['Java', 'Swing', 'PostgreSQL', 'AWS'],
+      images: ['/tempboba.png','/POSrelationalDatabase.png'],
+      description: 'I developed a full-stack Java POS system with a Swing GUI client and a cloud-hosted AWS PostgreSQL backend for a local boba shop. The Database contained 5 tables that could be dynamically pulled and updated in the front-end GUI.  \n A Python script generates of $5M+ in realistic sales data to test and populate a relational PostgreSQL schema. \n The manager dashboard call 15 SQL queries to generate visual reports on sales trends and inventory',
+      technologies: ['Java', 'Java Swing', 'PostgreSQL', 'AWS'],
     },
     {
       title: 'Reville Rankings',
