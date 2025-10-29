@@ -5,7 +5,7 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
+      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/galary.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
       description: 'I built a full-stack AI card generator app that generates Pokémon-like cards by custom training a Deep Convolutional GAN (DCGAN) with a unique 96x64 architecture. I trained the model on 11,000 images, which is served via a FastAPI backend. The RESTful API handles real-time model inference and manages a full-stack community gallery. The gallery\'s state is persisted in a PostgreSQL database optimized with custom SQL indexes to support "Popular" and "Recent" sorting. The backend is Dockerized and deployed on Render, communicating with a Vercel-hosted client that sends an on-load request to mitigate cold starts.',
       technologies: ['Python', 'PyTorch', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'JavaScript', 'Docker', 'Render', 'Vercel'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
@@ -13,8 +13,8 @@ export default function Projects() {
     },
     {
       title: '🧋 Boba Shop POS System',
-      date: 'Oct 2024',
-      images: ['/tempboba.png','/POSrelationalDatabase.png'],
+      date: 'Oct 2025',
+      images: ['/manager_gui.png','/sales_report.png', '/order_history.png', '/POSrelationalDatabase.png'],
       description: 'Full-stack Java POS system with a Swing GUI client and a cloud-hosted AWS PostgreSQL backend for a local boba shop. \n The Database contains 5 tables with dynamic updates from the front-end GUI.  \n Made a Python script to seed all 5 tables and generate $5M+ in realistic sales data for testing and validation. \n The manager dashboard call 15 SQL queries to generate visual reports on sales trends and inventory',
       technologies: ['Java', 'Java Swing', 'JDBC','PostgreSQL', 'AWS'],
     },
