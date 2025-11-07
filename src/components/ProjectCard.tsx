@@ -35,10 +35,10 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="mb-16 pb-16 border-b last:border-b-0" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
+    <div className="mb-16 pb-16 border-b last:border-b-0" style={{ borderColor: '#E8EAED' }}>
       <div className="flex items-baseline justify-between mb-6">
         <div className="flex items-baseline gap-4">
-          <span className="text-2xl font-bold" style={{ color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}>
+          <span className="text-2xl font-bold" style={{ color: '#5F6368', fontFamily: 'Inter, sans-serif' }}>
             {projectNumber}
           </span>
           <h3 className="text-2xl font-bold text-gray-900 uppercase tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -102,7 +102,7 @@ export default function ProjectCard({
                 onClick={previousImage}
                 disabled={currentImageIndex === 0}
                 className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
-                style={{ borderColor: '#C15F3C' }}
+                style={{ borderColor: '#5F6368' }}
                 aria-label="Previous image"
               >
                 <FaChevronLeft className="w-3.5 h-3.5" />
@@ -115,7 +115,7 @@ export default function ProjectCard({
                     onClick={() => setCurrentImageIndex(idx)}
                     className="w-2 h-2 rounded-full transition-all duration-300"
                     style={{
-                      backgroundColor: idx === currentImageIndex ? '#C15F3C' : 'rgba(193, 95, 60, 0.3)',
+                      backgroundColor: idx === currentImageIndex ? '#5F6368' : 'rgba(95, 99, 104, 0.3)',
                       transform: idx === currentImageIndex ? 'scale(1.3)' : 'scale(1)'
                     }}
                     aria-label={`Go to image ${idx + 1}`}
@@ -127,7 +127,7 @@ export default function ProjectCard({
                 onClick={nextImage}
                 disabled={currentImageIndex === images.length - 1}
                 className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
-                style={{ borderColor: '#C15F3C' }}
+                style={{ borderColor: '#5F6368' }}
                 aria-label="Next image"
               >
                 <FaChevronRight className="w-3.5 h-3.5" />
@@ -149,16 +149,16 @@ export default function ProjectCard({
             </div>
           )}
 
-          <div className="flex gap-3 pt-6 mt-4 border-t" style={{ borderColor: 'rgba(193, 95, 60, 0.1)' }}>
+          <div className="flex gap-3 pt-6 mt-4 border-t" style={{ borderColor: 'rgba(95, 99, 104, 0.1)' }}>
             {githubLink && (
               <a
                 href={githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200"
-                style={{ color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
+                style={{ color: '#5F6368', fontFamily: 'Inter, sans-serif' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#202124'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#5F6368'}
               >
                 <FaGithub size={28} />
                 <span>GitHub</span>
@@ -170,9 +170,9 @@ export default function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200"
-                style={{ color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
+                style={{ color: '#5F6368', fontFamily: 'Inter, sans-serif' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#202124'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#5F6368'}
               >
                 <FaExternalLinkAlt size={28} />
                 <span>Live Demo</span>

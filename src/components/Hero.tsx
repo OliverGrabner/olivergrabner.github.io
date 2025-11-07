@@ -6,6 +6,7 @@ interface ImageSlide {
   image: string;
   blackText: string;
   orangeText: string;
+  locationParts?: string[];
 }
 
 export default function Hero() {
@@ -18,17 +19,20 @@ export default function Hero() {
     {
       image: '/nature.jpg',
       blackText: "I love nature and taking pictures of nature. Recently I got the chance to hike in Seattle!",
-      orangeText: 'Seattle, Washington, USA'
+      orangeText: 'Seattle, Washington, USA',
+      locationParts: ['Seattle', 'Washington', 'USA']
     },
     {
       image: '/lucky.jpeg',
       blackText: "My dog's name is Lucky. He is a 7 year old labradoodle.",
-      orangeText: 'Austin, Texas, USA'
+      orangeText: 'Austin, Texas, USA',
+      locationParts: ['Austin', 'Texas', 'USA']
     },
     {
       image: '/darts.jpg',
       blackText: "I love trying out new games I've never played before in my free time! :)",
-      orangeText: 'Seattle, Washington, USA'
+      orangeText: 'Seattle, Washington, USA',
+      locationParts: ['Seattle', 'Washington', 'USA']
     }
   ];
 
@@ -60,8 +64,31 @@ export default function Hero() {
             <p className="text-base md:text-lg mb-4 leading-relaxed" style={{ color: '#000000' }}>
               {slides[currentSlide].blackText}
             </p>
-            <p className="text-sm md:text-base font-medium tracking-wide" style={{ color: '#C15F3C' }}>
-              {slides[currentSlide].orangeText}
+            <p className="text-sm md:text-base font-medium tracking-wide">
+              {currentSlide === 0 ? (
+                // First slide: Full Stack | API | Backend | ML with Google colors
+                <>
+                  <span style={{ color: '#4285F4' }}>Full Stack</span>
+                  <span style={{ color: '#5F6368' }}> | </span>
+                  <span style={{ color: '#EA4335' }}>API</span>
+                  <span style={{ color: '#5F6368' }}> | </span>
+                  <span style={{ color: '#FBBC04' }}>Backend</span>
+                  <span style={{ color: '#5F6368' }}> | </span>
+                  <span style={{ color: '#34A853' }}>ML</span>
+                </>
+              ) : slides[currentSlide].locationParts ? (
+                // Location slides with Google colors
+                <>
+                  <span style={{ color: '#4285F4' }}>{slides[currentSlide].locationParts[0]}</span>
+                  <span style={{ color: '#5F6368' }}>, </span>
+                  <span style={{ color: '#EA4335' }}>{slides[currentSlide].locationParts[1]}</span>
+                  <span style={{ color: '#5F6368' }}>, </span>
+                  <span style={{ color: '#FBBC04' }}>{slides[currentSlide].locationParts[2]}</span>
+                </>
+              ) : (
+                // Fallback to original text
+                <span style={{ color: '#5F6368' }}>{slides[currentSlide].orangeText}</span>
+              )}
             </p>
           </div>
 
@@ -69,23 +96,23 @@ export default function Hero() {
             <Link
               to="/projects"
               className="px-8 py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
-              style={{ backgroundColor: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#A54F32'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#C15F3C'}
+              style={{ backgroundColor: '#4285F4', fontFamily: 'Inter, sans-serif' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1967D2'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
             >
               View Projects
             </Link>
             <Link
               to="/research"
               className="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300"
-              style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+              style={{ borderColor: '#5F6368', color: '#5F6368', fontFamily: 'Inter, sans-serif' }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#C15F3C';
+                e.currentTarget.style.backgroundColor = '#5F6368';
                 e.currentTarget.style.color = 'white';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#C15F3C';
+                e.currentTarget.style.color = '#5F6368';
               }}
             >
               Research
@@ -99,7 +126,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all duration-300 hover:scale-125"
-              style={{ color: '#C15F3C' }}
+              style={{ color: '#5F6368' }}
               aria-label="GitHub"
             >
               <FaGithub size={28} />
@@ -107,7 +134,7 @@ export default function Hero() {
             <a
               href="mailto:olivergrabner.cs@gmail.com"
               className="transition-all duration-300 hover:scale-125"
-              style={{ color: '#C15F3C' }}
+              style={{ color: '#5F6368' }}
               aria-label="Email"
             >
               <FaEnvelope size={28} />
@@ -117,7 +144,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all duration-300 hover:scale-125"
-              style={{ color: '#C15F3C' }}
+              style={{ color: '#5F6368' }}
               aria-label="LinkedIn"
             >
               <FaLinkedin size={28} />
@@ -140,31 +167,35 @@ export default function Hero() {
             <button
               onClick={previousSlide}
               className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-7 h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
-              style={{ borderColor: '#C15F3C' }}
+              style={{ borderColor: '#5F6368' }}
               aria-label="Previous image"
             >
               <FaChevronLeft className="w-2.5 h-2.5" />
             </button>
 
             <div className="flex gap-1.5">
-              {slides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className="w-2 h-2 rounded-full transition-all duration-300"
-                  style={{
-                    backgroundColor: idx === currentSlide ? '#C15F3C' : 'rgba(193, 95, 60, 0.3)',
-                    transform: idx === currentSlide ? 'scale(1.3)' : 'scale(1)'
-                  }}
-                  aria-label={`Go to image ${idx + 1}`}
-                />
-              ))}
+              {slides.map((_, idx) => {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
+                const dotColor = googleColors[idx % googleColors.length];
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className="w-2 h-2 rounded-full transition-all duration-300"
+                    style={{
+                      backgroundColor: idx === currentSlide ? dotColor : `${dotColor}40`,
+                      transform: idx === currentSlide ? 'scale(1.3)' : 'scale(1)'
+                    }}
+                    aria-label={`Go to image ${idx + 1}`}
+                  />
+                );
+              })}
             </div>
 
             <button
               onClick={nextSlide}
               className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-7 h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
-              style={{ borderColor: '#C15F3C' }}
+              style={{ borderColor: '#5F6368' }}
               aria-label="Next image"
             >
               <FaChevronRight className="w-2.5 h-2.5" />

@@ -64,7 +64,7 @@ export default function Projects() {
             fontSize: '72px',
             fontWeight: '300',
             letterSpacing: '0.1em',
-            color: 'rgba(193, 95, 60, 0.12)'
+            color: 'rgba(95, 99, 104, 0.12)'
           }}>
             Projects
           </div>

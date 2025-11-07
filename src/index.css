@@ -11,11 +11,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Background colors */
-  background-color: #FAF7F2;
+  /* Background colors - Google light gray */
+  background-color: #FFFFFF;
   background-image:
-    linear-gradient(rgba(193, 95, 60, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(193, 95, 60, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(232, 234, 237, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 234, 237, 0.5) 1px, transparent 1px);
   background-size: 30px 30px;
   min-height: 100vh;
 }

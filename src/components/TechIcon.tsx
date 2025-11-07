@@ -3,21 +3,20 @@ interface TechIconProps {
 }
 
 export default function TechIcon({ tech }: TechIconProps) {
-  // Different shades of orange for each technology
-  const orangeShades = [
-    '#C15F3C', // Base orange
-    '#D16D47', // Lighter
-    '#B15534', // Darker
-    '#E07B51', // Even lighter
-    '#A14B2C', // Even darker
-    '#C96A42', // Mid-light
-    '#B8593A', // Mid-dark
-    '#D87F55', // Light
-    '#99442A', // Dark
-    '#E89264', // Very light
-    '#8F3F28', // Very dark
-    '#CC6540', // Mid
-    '#A85030', // Mid-dark2
+  // Google colors palette
+  const googleColors = [
+    '#4285F4', // Google Blue
+    '#EA4335', // Google Red
+    '#FBBC04', // Google Yellow
+    '#34A853', // Google Green
+    '#1967D2', // Darker Blue
+    '#D33B27', // Darker Red
+    '#F9AB00', // Darker Yellow
+    '#0D652D', // Darker Green
+    '#669DF7', // Light Blue
+    '#F28B82', // Light Red
+    '#FDD663', // Light Yellow
+    '#81C995', // Light Green
   ];
 
   // Get a consistent color for each tech by hashing the tech name
@@ -26,7 +25,7 @@ export default function TechIcon({ tech }: TechIconProps) {
     for (let i = 0; i < techName.length; i++) {
       hash = techName.charCodeAt(i) + ((hash << 5) - hash);
     }
-    return orangeShades[Math.abs(hash) % orangeShades.length];
+    return googleColors[Math.abs(hash) % googleColors.length];
   };
 
   const backgroundColor = getColorForTech(tech);

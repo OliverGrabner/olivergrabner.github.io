@@ -46,7 +46,7 @@ export default function Research() {
 
         <div className="space-y-16">
           {papers.map((paper, index) => (
-            <div key={index} className="border-b pb-12 last:border-b-0" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
+            <div key={index} className="border-b pb-12 last:border-b-0" style={{ borderColor: '#E8EAED' }}>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
                 <div className="md:col-span-2">
                   <img
@@ -66,7 +66,7 @@ export default function Research() {
                     {paper.authors.map((author, idx) => (
                       <span key={idx}>
                         {author === 'Oliver Grabner' ? (
-                          <strong style={{ color: '#C15F3C', fontWeight: 'bold' }}>{author}</strong>
+                          <strong style={{ color: '#4285F4', fontWeight: 'bold' }}>{author}</strong>
                         ) : (
                           author
                         )}
@@ -85,14 +85,14 @@ export default function Research() {
                 <button
                   onClick={() => setExpandedAbstract(expandedAbstract === index ? null : index)}
                   className="inline-flex items-center gap-2 px-4 py-2 border text-sm font-medium rounded transition-colors duration-200"
-                  style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+                  style={{ borderColor: '#4285F4', color: '#4285F4', fontFamily: 'Inter, sans-serif' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#C15F3C';
+                    e.currentTarget.style.backgroundColor = '#4285F4';
                     e.currentTarget.style.color = 'white';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#C15F3C';
+                    e.currentTarget.style.color = '#4285F4';
                   }}
                 >
                   {expandedAbstract === index ? 'Hide Abstract' : 'Abstract'}
@@ -103,14 +103,14 @@ export default function Research() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 border text-sm font-medium rounded transition-colors duration-200"
-                  style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+                  style={{ borderColor: '#EA4335', color: '#EA4335', fontFamily: 'Inter, sans-serif' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#C15F3C';
+                    e.currentTarget.style.backgroundColor = '#EA4335';
                     e.currentTarget.style.color = 'white';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#C15F3C';
+                    e.currentTarget.style.color = '#EA4335';
                   }}
                 >
                   PDF
@@ -122,14 +122,14 @@ export default function Research() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 border text-sm font-medium rounded transition-colors duration-200"
-                    style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+                    style={{ borderColor: '#34A853', color: '#34A853', fontFamily: 'Inter, sans-serif' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#C15F3C';
+                      e.currentTarget.style.backgroundColor = '#34A853';
                       e.currentTarget.style.color = 'white';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#C15F3C';
+                      e.currentTarget.style.color = '#34A853';
                     }}
                   >
                     Code
@@ -139,14 +139,14 @@ export default function Research() {
                 <button
                   onClick={() => setExpandedBibtex(expandedBibtex === index ? null : index)}
                   className="inline-flex items-center gap-2 px-4 py-2 border text-sm font-medium rounded transition-colors duration-200"
-                  style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+                  style={{ borderColor: '#FBBC04', color: '#FBBC04', fontFamily: 'Inter, sans-serif' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#C15F3C';
+                    e.currentTarget.style.backgroundColor = '#FBBC04';
                     e.currentTarget.style.color = 'white';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#C15F3C';
+                    e.currentTarget.style.color = '#FBBC04';
                   }}
                 >
                   {expandedBibtex === index ? 'Hide BibTeX' : 'BibTeX'}
@@ -154,7 +154,7 @@ export default function Research() {
               </div>
 
               {expandedAbstract === index && (
-                <div className="mb-4 p-4 bg-gray-50 rounded border" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
+                <div className="mb-4 p-4 bg-gray-50 rounded border" style={{ borderColor: '#E8EAED' }}>
                   <p className="text-gray-700 leading-relaxed" style={{ fontFamily: 'Lora, serif', fontSize: '15px' }}>
                     {paper.abstract}
                   </p>
@@ -162,7 +162,7 @@ export default function Research() {
               )}
 
               {expandedBibtex === index && (
-                <div className="mb-4 p-4 bg-gray-50 rounded border font-mono text-sm" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
+                <div className="mb-4 p-4 bg-gray-50 rounded border font-mono text-sm" style={{ borderColor: '#E8EAED' }}>
                   <pre className="whitespace-pre-wrap">{paper.bibtex}</pre>
                   <button
                     onClick={() => {
@@ -170,14 +170,14 @@ export default function Research() {
                       alert('BibTeX copied to clipboard!');
                     }}
                     className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 border text-xs font-medium rounded transition-colors duration-200"
-                    style={{ borderColor: '#C15F3C', color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}
+                    style={{ borderColor: '#5F6368', color: '#5F6368', fontFamily: 'Inter, sans-serif' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#C15F3C';
+                      e.currentTarget.style.backgroundColor = '#5F6368';
                       e.currentTarget.style.color = 'white';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#C15F3C';
+                      e.currentTarget.style.color = '#5F6368';
                     }}
                   >
                     Copy to Clipboard
@@ -187,7 +187,7 @@ export default function Research() {
             </div>
           ))}
 
-          <div className="border-b pb-12" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
+          <div className="border-b pb-12" style={{ borderColor: '#E8EAED' }}>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
               <div className="md:col-span-2">
                 <img
