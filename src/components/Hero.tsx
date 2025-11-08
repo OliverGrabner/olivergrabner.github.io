@@ -22,12 +22,12 @@ export default function Hero() {
     },
     {
       image: '/lucky.jpeg',
-      blackText: "My dog's name is Lucky. He is a 7 year old labradoodle.",
+      blackText: "Here is my dog named Lucky! He is a 7 year old labradoodle who barks if you don't walk him early enough.",
       orangeText: 'Austin, Texas, USA'
     },
     {
       image: '/darts.jpg',
-      blackText: "I love trying out new games I've never played before in my free time! :)",
+      blackText: "I love trying out new games I've never played before in my free time! It's always fun to do new things.",
       orangeText: 'Seattle, Washington, USA'
     }
   ];

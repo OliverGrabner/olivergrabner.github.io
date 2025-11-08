@@ -23,7 +23,7 @@ export default function Research() {
   {
     title: 'Z-Scores: A Metric for Linguistically Assessing Disfluency Removal',
     authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
-    venue: 'ICASSP 2025 (Under Review)',
+    venue: '<strong>ICASSP 2025</strong> (Under Review)',
     image: '/zscore.png',
     abstract: 'Evaluating disfluency removal in speech requires more than aggregate token-level scores. Traditional word-based metrics such as precision, recall, and F1 (E-Scores) capture overall performance but cannot reveal why models succeed or fail. We introduce Z-Scores, a span-level linguistically-grounded evaluation metric that categorizes system behavior across distinct disfluency types (EDITED, INTJ, PRN). Our deterministic alignment module enables robust mapping between generated text and disfluent transcripts, allowing Z-Scores to expose systematic weaknesses that word-level metrics obscure. By providing category-specific diagnostics, Z-Scores enable researchers to identify model failure modes and design targeted interventions -- such as tailored prompts or data augmentation -- yielding measurable performance improvements. A case study with LLMs shows that Z-scores uncover challenges with INTJ and PRN disfluencies hidden in aggregate F1, directly informing model refinement strategies.',
     pdfLink: 'https://arxiv.org/pdf/2509.20319',
