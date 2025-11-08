@@ -137,9 +137,11 @@ export default function ProjectCard({
         </div>
 
         <div className="md:col-span-3 flex flex-col">
-          <p className="text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Lora, serif', fontSize: '15px', whiteSpace: 'pre-line' }}>
-            {description}
-          </p>
+          <p
+            className="text-gray-700 leading-relaxed mb-4"
+            style={{ fontFamily: 'Lora, serif', fontSize: '15px', whiteSpace: 'pre-line' }}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
 
           {technologies.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-auto">

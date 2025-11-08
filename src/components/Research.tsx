@@ -6,24 +6,9 @@ export default function Research() {
 
   const papers = [
     {
-      title: 'Z-Scores: A Metric for Linguistically Assessing Disfluency Removal',
-      authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
-      venue: 'ICASSP 2025 (Under Review)',
-      image: '/zscore.png',
-      abstract: 'Evaluating disfluency removal in speech requires more than aggregate token-level scores. Traditional word-based metrics such as precision, recall, and F1 (E-Scores) capture overall performance but cannot reveal why models succeed or fail. We introduce Z-Scores, a span-level linguistically-grounded evaluation metric that categorizes system behavior across distinct disfluency types (EDITED, INTJ, PRN). Our deterministic alignment module enables robust mapping between generated text and disfluent transcripts, allowing Z-Scores to expose systematic weaknesses that word-level metrics obscure. By providing category-specific diagnostics, Z-Scores enable researchers to identify model failure modes and design targeted interventions -- such as tailored prompts or data augmentation -- yielding measurable performance improvements. A case study with LLMs shows that Z-scores uncover challenges with INTJ and PRN disfluencies hidden in aggregate F1, directly informing model refinement strategies.',
-      pdfLink: 'https://arxiv.org/pdf/2509.20319',
-      codeLink: 'https://github.com/mariateleki/zscore',
-      bibtex: `@inproceedings{teleki25_zscores,
-  title = {Z-Scores: A Metric for Linguistically Assessing Disfluency Removal},
-  author = {Maria Teleki and Sai Janjur and Haoran Liu and Oliver Grabner and Ketan Verma and Thomas Docog and Xiangjue Dong and Lingfeng Shi and Cong Wang and Stephanie Birkelbach and Jason Kim and Yin Zhang and James Caverlee},
-  year = {2025},
-  booktitle = {ICASSP},
-}`
-    },
-    {
       title: 'DRES: Benchmarking LLMs for Disfluency Removal',
       authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
-      venue: 'ICASSP 2025 (Under Review)',
+      venue: '<strong>ICASSP 2025</strong> (Under Review)',
       image: '/dres.png',
       abstract: 'Disfluencies -- such as \'um,\' \'uh,\' interjections, parentheticals, and edited statements -- remain a persistent challenge for speech-driven systems, degrading accuracy in command interpretation, summarization, and conversational agents. We introduce DRES (Disfluency Removal Evaluation Suite), a controlled text-level benchmark that establishes a reproducible semantic upper bound for this task. DRES builds on human-annotated Switchboard transcripts, isolating disfluency removal from ASR errors and acoustic variability. We systematically evaluate proprietary and open-source LLMs across scales, prompting strategies, and architectures. Our results reveal that (i) simple segmentation consistently improves performance, even for long-context models; (ii) reasoning-oriented models tend to over-delete fluent tokens; and (iii) fine-tuning achieves near state-of-the-art precision and recall but harms generalization abilities. We further present a set of LLM-specific error modes and offer nine practical recommendations (R1-R9) for deploying disfluency removal in speech-driven pipelines. DRES provides a reproducible, model-agnostic foundation for advancing robust spoken-language systems.',
       pdfLink: 'https://arxiv.org/pdf/2509.20321',
@@ -34,7 +19,22 @@ export default function Research() {
   year = {2025},
   booktitle = {ICASSP},
 }`
-    }
+},
+  {
+    title: 'Z-Scores: A Metric for Linguistically Assessing Disfluency Removal',
+    authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
+    venue: 'ICASSP 2025 (Under Review)',
+    image: '/zscore.png',
+    abstract: 'Evaluating disfluency removal in speech requires more than aggregate token-level scores. Traditional word-based metrics such as precision, recall, and F1 (E-Scores) capture overall performance but cannot reveal why models succeed or fail. We introduce Z-Scores, a span-level linguistically-grounded evaluation metric that categorizes system behavior across distinct disfluency types (EDITED, INTJ, PRN). Our deterministic alignment module enables robust mapping between generated text and disfluent transcripts, allowing Z-Scores to expose systematic weaknesses that word-level metrics obscure. By providing category-specific diagnostics, Z-Scores enable researchers to identify model failure modes and design targeted interventions -- such as tailored prompts or data augmentation -- yielding measurable performance improvements. A case study with LLMs shows that Z-scores uncover challenges with INTJ and PRN disfluencies hidden in aggregate F1, directly informing model refinement strategies.',
+    pdfLink: 'https://arxiv.org/pdf/2509.20319',
+    codeLink: 'https://github.com/mariateleki/zscore',
+    bibtex: `@inproceedings{teleki25_zscores,
+  title = {Z-Scores: A Metric for Linguistically Assessing Disfluency Removal},
+  author = {Maria Teleki and Sai Janjur and Haoran Liu and Oliver Grabner and Ketan Verma and Thomas Docog and Xiangjue Dong and Lingfeng Shi and Cong Wang and Stephanie Birkelbach and Jason Kim and Yin Zhang and James Caverlee},
+  year = {2025},
+  booktitle = {ICASSP},
+}`
+  }
   ];
 
   return (
@@ -75,9 +75,11 @@ export default function Research() {
                     ))}
                   </p>
 
-                  <p className="text-sm text-gray-600 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-                    {paper.venue}
-                  </p>
+                  <p
+                    className="text-sm text-gray-600 mb-4"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    dangerouslySetInnerHTML={{ __html: paper.venue }}
+                  />
                 </div>
               </div>
 
