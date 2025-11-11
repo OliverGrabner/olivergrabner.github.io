@@ -5,39 +5,43 @@ interface TechIconProps {
 export default function TechIcon({ tech }: TechIconProps) {
   // Original orange shades organized by category
   const techCategories: Record<string, string> = {
-    // AI/ML/Data Science - Base orange (main Anthropic color)
+    // languages - Base orange (main Anthropic color)
     'Python': '#C15F3C',
+    'Java': '#C15F3C',
+    'TypeScript': '#C15F3C',
+    'JavaScript': '#C15F3C',
+
+    // ml 
     'PyTorch': '#C15F3C',
     'pandas': '#C15F3C',
     'matplotlib': '#C15F3C',
 
     // Backend/APIs - Darker orange
     'FastAPI': '#93462aff',
-    'Java': '#93462aff',
     'JDBC': '#93462aff',
     'SQLAlchemy': '#93462aff',
 
     // Frontend/UI - Lighter orange
-    'React': '#e67d53ff',
-    'TypeScript': '#e67d53ff',
-    'JavaScript': '#e67d53ff',
-    'Tailwind CSS': '#e67d53ff',
-    'Vite': '#e67d53ff',
-    'Java Swing': '#e67d53ff',
-    'PyQt5': '#e67d53ff',
-    'Google Analytics 4': '#e67d53ff',
+    'React': '#df7a61ff',
+    'Tailwind CSS': '#df7a61ff',
+    'Vite': '#df7a61ff',
+    'Java Swing': '#df7a61ff',
+    'PyQt5': '#df7a61ff',
+    'Google Analytics 4': '#df7a61ff',
+    'HTML': '#df7a61ff',
+    'CSS': '#df7a61ff',
 
 
     // Databases - Even darker
-    'PostgreSQL': '#8d4125ff',
-    'AWS': '#8d4125ff',
+    'PostgreSQL': '#c77700ff',
+    'AWS': '#c77700ff',
 
     // DevOps/Infrastructure - Mid-light
-    'Docker': '#C96A42',
-    'Render': '#C96A42',
-    'Vercel': '#C96A42',
-    'Netlify': '#C96A42',
-    'GitHub Pages': '#C96A42',
+    'Docker': '#c48a35ff',
+    'Render': '#c48a35ff',
+    'Vercel': '#c48a35ff',
+    'Netlify': '#c48a35ff',
+    'GitHub Pages': '#c48a35ff',
 
     // Hardware/Low-level - Very dark
     'Logisim': '#8F3F28',

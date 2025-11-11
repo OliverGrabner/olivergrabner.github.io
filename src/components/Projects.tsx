@@ -5,9 +5,9 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4', '/generate_cards.mp4','/pack_opening.mp4', '/galary.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
+      images: ['/fakemon.mp4','/pack_opening.mp4', '/galary.mp4', '/generate_cards.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
       description: 'I built a <strong>full-stack AI card generator</strong> app that generates Pokémon-like cards by <strong>custom training a Deep Convolutional GAN (DCGAN)</strong> with a unique <strong>96x64 architecture</strong>. I trained the model on <strong>11,000 images</strong>, which is served via a <strong>FastAPI backend</strong>. The RESTful API handles <strong>real-time model inference</strong> and manages a full-stack community gallery. The gallery\'s state is persisted in a <strong>PostgreSQL database optimized with custom SQL indexes</strong> to support "Popular" and "Recent" sorting. The backend is <strong>Dockerized and deployed on Render</strong>, communicating with a Vercel-hosted client that sends an on-load request to <strong>mitigate cold starts</strong>.',
-      technologies: ['Python', 'PyTorch', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'JavaScript', 'Docker', 'Render', 'Vercel'],
+      technologies: ['Python', 'PyTorch', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'JavaScript', 'Docker', 'Render', 'Vercel'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
       demoLink: 'https://fakemon-card-simulator.vercel.app'
     },
@@ -20,13 +20,13 @@ export default function Projects() {
       githubLink: 'https://github.com/OliverGrabner/boba_pos_system'
     },
     {
-      title: 'Reville Rankings',
-      date: 'Oct 2023',
-      images: ['/revrankings.png'],
-      description: 'In my <strong>first hackathon</strong>, I built a <strong>python-based data analysis tool</strong> that processes Texas A&M University\'s <strong>public grade distribution data from multiple years</strong>. The tool <strong>ranks top-performing professors by GPA</strong> and provides detailed grade breakdowns for <strong>945 unique courses</strong>. Features an <strong>interactive PyQt5 GUI</strong> with <strong>matplotlib visualizations</strong> for easy interpretation of grade distributions.',
-      technologies: ['Python', 'pandas', 'matplotlib', 'PyQt5'],
-      githubLink: 'https://github.com/OliverGrabner/RevilleRankings'
-    }, 
+      title: 'KFW Law Firm Website',
+      date: 'Sept 2025',
+      images: ['/kfwlaw.mp4', '/kfwclient.png'],
+      description: 'I designed and developed a <strong>modern replacement</strong> for a local law firm\'s website (<strong>700+ monthly visits</strong>), redesigning from the ground up to improve usability and <strong>increase conversions</strong>. As the <strong>sole developer</strong>, I translated non-technical requirements to a web application with <strong>integrated Google Analytics</strong> to better understand user behavior and refine the firm\'s online presence',
+      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Netlify', 'Google Analytics 4'],
+      demoLink: 'https://kfwlaw.netlify.app/'
+    },
     {
       title: 'Y86-64 Processor Design',
       date: 'March 2025',
@@ -36,21 +36,21 @@ export default function Projects() {
       githubLink: 'https://github.com/OliverGrabner/Y86-64-Processor-Design'
     },
     {
-      title: 'KFW Law Firm Website',
-      date: 'July 2024',
-      images: ['/kfwlaw.mp4', '/kfwclient.png'],
-      description: 'I designed and developed a <strong>modern replacement</strong> for a local law firm\'s website (<strong>700+ monthly visits</strong>), <strong>redesigning from the ground up</strong> to improve usability and <strong>increase conversions</strong>. As the <strong>sole developer</strong>, I translated non-technical requirements to a web application with <strong>integrated Google Analytics</strong> to better understand user behavior and refine the firm\'s online presence',
-      technologies: ['React', 'Vite', 'Tailwind CSS', 'Netlify', 'Google Analytics 4'],
-      demoLink: 'https://kfwlaw.netlify.app/'
-    },
+      title: 'Reville Rankings',
+      date: 'Oct 2023',
+      images: ['/revrankings.png'],
+      description: 'In my <strong>first hackathon</strong>, I built a <strong>python-based data analysis tool</strong> that processes Texas A&M University\'s <strong>public grade distribution data from multiple years</strong>. The tool <strong>ranks top-performing professors by GPA</strong> and provides detailed grade breakdowns for <strong>945 unique courses</strong>. Features an <strong>interactive PyQt5 GUI</strong> with <strong>matplotlib visualizations</strong> for easy interpretation of grade distributions.',
+      technologies: ['Python', 'pandas', 'matplotlib', 'PyQt5'],
+      githubLink: 'https://github.com/OliverGrabner/RevilleRankings'
+    }, 
     {
       title: 'Personal Portfolio',
-      date: 'October 2025',
+      date: 'Oct 2025',
       images: ['/website.png'],
       description: 'In order to show all my projects, I needed a canvas, so I created a portfolio built with <strong>React and TypeScript</strong>. It features <strong>smooth animations</strong>, <strong>dynamic routing</strong>, and a <strong>clean design system</strong>. It showcases projects with <strong>interactive card carousels</strong> and integrates media links. <strong>Deployed on GitHub Pages</strong> with <strong>continuous integration</strong>.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+      technologies: ['TypeScript', 'React', 'Vite','Tailwind CSS', 'GitHub Pages'],
       githubLink: 'https://github.com/OliverGrabner/olivergrabner.github.io',
-      demoLink: 'https://olivergrabner.github.io'
+      demoLink: 'https://olivergrabner.com'
     }
   ];
 
