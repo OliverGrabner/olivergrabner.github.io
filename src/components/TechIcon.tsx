@@ -36,6 +36,9 @@ export default function TechIcon({ tech }: TechIconProps) {
     'PostgreSQL': '#c77700ff',
     'AWS': '#c77700ff',
 
+    // Testing - Dark orange
+    'pytest': '#c77700ff',
+
     // DevOps/Infrastructure - Mid-light
     'Docker': '#c48a35ff',
     'Render': '#c48a35ff',

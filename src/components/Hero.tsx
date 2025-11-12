@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaGoogleScholar } from "react-icons/fa6";
 
 interface ImageSlide {
   image: string;
@@ -11,7 +12,7 @@ interface ImageSlide {
 export default function Hero() {
   const slides: ImageSlide[] = [
     {
-      image: '/Headshot.png',
+      image: '/casual_headshot.jpeg',
       blackText: "Hi! I'm Oliver. I am currently pursuing a BS in Computer Science at Texas A&M.",
       orangeText: 'Full Stack | API | Backend | ML'
     },
@@ -121,6 +122,16 @@ export default function Hero() {
               aria-label="LinkedIn"
             >
               <FaLinkedin size={28} />
+            </a>
+            <a
+              href="https://scholar.google.com/citations?hl=en&user=k3QsYgoAAAAJ&view_op=list_works&citft=1&citft=2&email_for_op=oliver.charles.rene.grabner%40gmail.com&gmla=AKzYXQ0XilqjRC0MVaN2uLWqpk8zzjDII_UhIKkWewQ2z3RiYBIgG2jqEvo1Vs_P0CntWWXHV1pIMJ-s8n-AdjjCdvn6PuU-lR5HeV4bfxtbItlLxJAKytxpJRAGiwxCVhv1o5tsviYvojE7mlUsVkw1vEG-59HwI7VCzLMkWgSU8yHRWM4MuyqiIaxsvAXFO0EWj5T3XAiuNBvBePQWY2s37j7KYooeuTEK71CGtp6QsUKaUwG1gBwvNGHJYT2gJE9kyg8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-125"
+              style={{ color: '#C15F3C' }}
+              aria-label="Google Scholar"
+            >
+              <FaGoogleScholar size={28} />
             </a>
           </div>
         </div>

@@ -5,9 +5,9 @@ export default function Projects() {
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4','/pack_opening.mp4', '/galary.mp4', '/generate_cards.mp4', '/fakemondiagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
-      description: 'I built a <strong>full-stack AI card generator</strong> app that generates Pokémon-like cards by <strong>custom training a Deep Convolutional GAN (DCGAN)</strong> with a unique <strong>96x64 architecture</strong>. I trained the model on <strong>11,000 images</strong>, which is served via a <strong>FastAPI backend</strong>. The RESTful API handles <strong>real-time model inference</strong> and manages a full-stack community gallery. The gallery\'s state is persisted in a <strong>PostgreSQL database optimized with custom SQL indexes</strong> to support "Popular" and "Recent" sorting. The backend is <strong>Dockerized and deployed on Render</strong>, communicating with a Vercel-hosted client that sends an on-load request to <strong>mitigate cold starts</strong>.',
-      technologies: ['Python', 'PyTorch', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'JavaScript', 'Docker', 'Render', 'Vercel'],
+      images: ['/fakemon.mp4','/pack_opening.mp4', '/galary.mp4', '/generate_cards.mp4', '/fakemon_diagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
+      description: 'I built a <strong>full-stack AI card generator</strong> app that generates Pokémon-like cards by <strong>custom training a Deep Convolutional GAN (DCGAN)</strong> with a unique <strong>96x64 architecture</strong>. I trained the model on <strong>11,000 images</strong>, which is served via a <strong>FastAPI backend</strong>. The RESTful API handles <strong>real-time model inference</strong> and manages a full-stack community gallery. The gallery\'s state is persisted in a <strong>PostgreSQL database optimized with custom SQL indexes</strong> to support "Popular" and "Recent" sorting. I added a comprehensive test suite with <strong> 42 tests </strong> covering unit tests, database, and APIs. The backend is <strong>Dockerized and deployed on Render</strong>, communicating with a Vercel-hosted client that sends an on-load request to <strong>mitigate cold starts</strong>.',
+      technologies: ['Python', 'PyTorch', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'pytest', 'JavaScript', 'Docker', 'Render', 'Vercel'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
       demoLink: 'https://fakemon-card-simulator.vercel.app'
     },
