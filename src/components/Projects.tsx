@@ -12,12 +12,21 @@ export default function Projects() {
       demoLink: 'https://fakemon-card-simulator.vercel.app'
     },
     {
-      title: '🧋 Boba Shop POS System',
+      title: 'Java Swing POS System',
       date: 'Oct 2025',
       images: ['/manager_gui.png','/sales_report.png', '/order_history.png', '/POSrelationalDatabase.png'],
-      description: '<strong>Full-stack Java POS system</strong> with a <strong>Swing GUI client</strong> and a <strong>cloud-hosted AWS PostgreSQL backend</strong> for a local boba shop. \n The Database contains <strong>5 tables with dynamic updates</strong> from the front-end GUI.  \n Made a <strong>Python script to seed all 5 tables</strong> and generate <strong>$5M+ in realistic sales data</strong> for testing and validation. \n The manager dashboard calls <strong>15 SQL queries</strong> to generate <strong>visual reports on sales trends and inventory</strong>',
-      technologies: ['Java', 'Java Swing', 'JDBC','PostgreSQL', 'AWS'],
+      description: 'Engineered a POS application with a <strong>Java Swing GUI </strong> and a <strong>cloud-hosted AWS PostgreSQL backend</strong> using JDBC for a local boba shop. \n Designed a <strong>5 table relational database schema</strong> with dynamic updates from the front-end GUI. \n Made a <strong>Python script to seed all 5 tables</strong> and generate <strong>$5M+ in realistic sales data</strong> for testing and validation. \n The manager dashboard calls <strong>15 SQL queries</strong> to generate <strong>visual reports on sales trends and inventory</strong>',
+      technologies: ['Java', 'Java Swing', 'JDBC','PostgreSQL', 'AWS RDS', 'Python'],
       githubLink: 'https://github.com/OliverGrabner/boba_pos_system'
+    },
+    {
+      title: '🧋 Full-Stack Web POS Platform',
+      date: 'Nov 2025',
+      images: ['/web_pos/webpos_login.png'],
+      description: '<strong>Collaborated in a team using Git workflows and CI/CD</strong> to engineer a full-stack POS system with <strong>TypeScript, React, and Express.js</strong>. \n Built <strong>RESTful API architecture</strong> connected to an <strong>AWS RDS PostgreSQL database</strong> with connection pooling and database transactions for consistency. \n Secured authentication via <strong>Google OAuth 2.0</strong>, enforcing server-side JWT validation and HTTP-only session cookies. \n Deployed with frontend on <strong>Vercel</strong>, backend on <strong>Render</strong>, supporting multi-user concurrent access.',
+      technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'AWS RDS', 'Google OAuth 2.0', 'Git', 'Vercel', 'Render'],
+      githubLink: 'https://github.com/CSCE331-Fall2025-900-911/project3_gang_41',
+      demoLink: 'https://project3-gang-41-frontend.vercel.app/'
     },
     {
       title: 'KFW Law Firm Website',

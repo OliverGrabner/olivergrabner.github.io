@@ -20,6 +20,8 @@ export default function TechIcon({ tech }: TechIconProps) {
     'FastAPI': '#93462aff',
     'JDBC': '#93462aff',
     'SQLAlchemy': '#93462aff',
+    'Node.js': '#93462aff',
+    'Express': '#93462aff',
 
     // Frontend/UI - Lighter orange
     'React': '#df7a61ff',
@@ -35,9 +37,16 @@ export default function TechIcon({ tech }: TechIconProps) {
     // Databases - Even darker
     'PostgreSQL': '#c77700ff',
     'AWS': '#c77700ff',
+    'AWS RDS': '#c77700ff',
 
     // Testing - Dark orange
     'pytest': '#c77700ff',
+
+    // Authentication/Security - Medium dark
+    'Google OAuth 2.0': '#A54F32',
+
+    // Version Control - Medium orange
+    'Git': '#C15F3C',
 
     // DevOps/Infrastructure - Mid-light
     'Docker': '#c48a35ff',
