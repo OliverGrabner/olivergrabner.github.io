@@ -29,20 +29,20 @@ export default function Projects() {
       demoLink: 'https://project3-gang-41-frontend.vercel.app/'
     },
     {
-      title: 'KFW Law Firm Website',
-      date: 'Sept 2025',
-      images: ['/kfwlaw.mp4', '/kfwclient.png'],
-      description: 'I designed and developed a <strong>modern replacement</strong> for a local law firm\'s website (<strong>700+ monthly visits</strong>), redesigning from the ground up to improve usability and <strong>increase conversions</strong>. As the <strong>sole developer</strong>, I translated non-technical requirements to a web application with <strong>integrated Google Analytics</strong> to better understand user behavior and refine the firm\'s online presence',
-      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Netlify', 'Google Analytics 4'],
-      demoLink: 'https://kfwlaw.netlify.app/'
-    },
-    {
       title: 'Y86-64 Processor Design',
       date: 'March 2025',
       images: ['/y86.png', '/registerfile.png'],
       description: 'I built a <strong>64-bit Y86 processor</strong> to better understand the fundamentals of computer architecture. The design implemented <strong>six pipelined stages</strong> (fetch, decode, execute, memory, write, PC update) with <strong>19 instructions, 15 registers, and a 4 KB memory</strong> for <strong>variable length instruction fetching</strong>. I engineered <strong>control logic to handle hazards and jumps</strong>, then validated the design by running Y86 assembly programs in both a simulator and my implementation, achieving <strong>full functional parity</strong>. Overall, this project was really fun and taught me more about a side of computer science I rarely visit',
       technologies: ['Logisim', 'Y86-64 ISA', 'Assembly'],
       githubLink: 'https://github.com/OliverGrabner/Y86-64-Processor-Design'
+    },
+    {
+      title: 'KFW Law Firm Website',
+      date: 'Sept 2025',
+      images: ['/kfwlaw.mp4', '/kfwclient.png'],
+      description: 'I designed and developed a <strong>modern replacement</strong> for a local law firm\'s website (<strong>700+ monthly visits</strong>), redesigning from the ground up to improve usability and <strong>increase conversions</strong>. As the <strong>sole developer</strong>, I translated non-technical requirements to a web application with <strong>integrated Google Analytics</strong> to better understand user behavior and refine the firm\'s online presence',
+      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Netlify', 'Google Analytics 4'],
+      demoLink: 'https://kfwlaw.netlify.app/'
     },
     {
       title: 'Reville Rankings',
