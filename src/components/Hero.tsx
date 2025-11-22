@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { FaGoogleScholar } from "react-icons/fa6";
@@ -12,7 +12,7 @@ interface ImageSlide {
 export default function Hero() {
   const slides: ImageSlide[] = [
     {
-      image: '/casual_headshot.jpeg',
+      image: '/prof_headshot.jpg',
       blackText: "Hi! I'm Oliver. I am currently pursuing a BS in Computer Science at Texas A&M.",
       orangeText: 'Full Stack | API | Backend | ML'
     },
@@ -28,12 +28,16 @@ export default function Hero() {
     },
     {
       image: '/darts.jpg',
-      blackText: "I love trying out new games I've never played before in my free time! It's always fun to do new things.",
+      blackText: "I love playing all kinds of games and learning new things.",
       orangeText: 'Seattle, Washington, USA'
     }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Touch/swipe handling
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -41,6 +45,27 @@ export default function Hero() {
 
   const previousSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        previousSlide();
+      }
+    }
   };
 
   return (
@@ -138,11 +163,17 @@ export default function Hero() {
 
         {/* Right Side - Image Carousel */}
         <div className="flex flex-col items-center animate-[fadeIn_0.8s_ease-out_0.4s_both]">
-          <div className="relative">
+          <div
+            className="relative select-none"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ touchAction: 'pan-y' }}
+          >
             <img
               src={slides[currentSlide].image}
               alt="Oliver Grabner"
-              className="w-64 h-auto rounded-2xl shadow-2xl"
+              className="w-56 sm:w-64 h-auto rounded-2xl shadow-2xl"
             />
           </div>
 
@@ -150,19 +181,19 @@ export default function Hero() {
           <div className="flex items-center justify-center gap-3 mt-4">
             <button
               onClick={previousSlide}
-              className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-7 h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
+              className="bg-white hover:bg-gray-50 active:bg-gray-100 border-2 text-gray-800 rounded-full w-9 h-9 sm:w-7 sm:h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
               style={{ borderColor: '#C15F3C' }}
               aria-label="Previous image"
             >
-              <FaChevronLeft className="w-2.5 h-2.5" />
+              <FaChevronLeft className="w-3 h-3 sm:w-2.5 sm:h-2.5" />
             </button>
 
-            <div className="flex gap-1.5">
+            <div className="flex gap-2 sm:gap-1.5">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className="w-2 h-2 rounded-full transition-all duration-300"
+                  className="w-3 h-3 sm:w-2 sm:h-2 rounded-full transition-all duration-300"
                   style={{
                     backgroundColor: idx === currentSlide ? '#C15F3C' : 'rgba(193, 95, 60, 0.3)',
                     transform: idx === currentSlide ? 'scale(1.3)' : 'scale(1)'
@@ -174,11 +205,11 @@ export default function Hero() {
 
             <button
               onClick={nextSlide}
-              className="bg-white hover:bg-gray-50 border-2 text-gray-800 rounded-full w-7 h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
+              className="bg-white hover:bg-gray-50 active:bg-gray-100 border-2 text-gray-800 rounded-full w-9 h-9 sm:w-7 sm:h-7 flex items-center justify-center transition-all duration-200 shadow-sm"
               style={{ borderColor: '#C15F3C' }}
               aria-label="Next image"
             >
-              <FaChevronRight className="w-2.5 h-2.5" />
+              <FaChevronRight className="w-3 h-3 sm:w-2.5 sm:h-2.5" />
             </button>
           </div>
         </div>

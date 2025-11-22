@@ -3,6 +3,7 @@
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -10,6 +11,7 @@ body {
   font-family: 'Lora', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(193, 95, 60, 0.2);
 
   /* Background colors */
   background-color: #FAF7F2;
