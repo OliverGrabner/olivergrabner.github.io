@@ -27,9 +27,9 @@ export default function Hero() {
       orangeText: 'Austin, Texas, USA'
     },
     {
-      image: '/darts.jpg',
-      blackText: "I love playing all kinds of games and learning new things.",
-      orangeText: 'Seattle, Washington, USA'
+      image: '/chicken.jpeg',
+      blackText: "I love to cook! I'm best at making Tacos, Steak, Burgers, Hummus, Breakfast Burritos, etc..",
+      orangeText: 'Los Gatos, California, USA'
     }
   ];
 

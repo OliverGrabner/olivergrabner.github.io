@@ -22,8 +22,8 @@ export default function Projects() {
     {
       title: '🧋 Full-Stack Web POS Platform',
       date: 'Nov 2025',
-      images: ['/web_pos/inventoryq_screen.png', '/web_pos/cashier_screen.png' ,'/web_pos/webpos_login.png', '/web_pos/history_screen.png'],
-      description: '<strong>Collaborated in a team using Git workflows and CI/CD</strong> to engineer a full-stack POS system with <strong>TypeScript, React, and Express.js</strong>. \n Built <strong>RESTful API architecture</strong> connected to an <strong>AWS RDS PostgreSQL database</strong> with connection pooling and database transactions for consistency. \n Secured authentication via <strong>Google OAuth 2.0</strong>, enforcing server-side JWT validation and HTTP-only session cookies. \n Deployed with frontend on <strong>Vercel</strong>, backend on <strong>Render</strong>, supporting multi-user concurrent access.',
+      images: ['/web_pos/pos_sys_kiosk.mp4', '/web_pos/pos_sys_manager.mp4', '/web_pos/pos_sys_reports.png', '/web_pos/pos_sys_login.png'],
+      description: '<strong>Collaborated in a team using Git workflows and CI/CD</strong> to engineer a full-stack POS system with <strong>TypeScript, React, and Express.js</strong>. Built a <strong>RESTful API architecture</strong> connected to an <strong>AWS RDS PostgreSQL database</strong> with connection pooling and database transactions for consistency. Secured authentication via <strong>Google OAuth 2.0</strong> with server-side JWT validation and HTTP-only session cookies. Deployed frontend on <strong>Vercel</strong> and backend on <strong>Render</strong>, supporting multi-user concurrent access.',
       technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'AWS RDS', 'Google OAuth 2.0', 'Git', 'Vercel', 'Render'],
       githubLink: 'https://github.com/CSCE331-Fall2025-900-911/project3_gang_41',
       demoLink: 'https://project3-gang-41-frontend.vercel.app/'
