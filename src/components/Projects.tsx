@@ -3,6 +3,15 @@ import ProjectCard from './ProjectCard';
 export default function Projects() {
   const projects = [
     {
+      title: 'Stockle',
+      date: 'Dec 2025',
+      images: ['/stockle/stockle-game.png', '/stockle/stockle-win.png', '/stockle/og-image.png'],
+      description: 'I built a <strong>Wordle-inspired daily stock guessing game</strong> where players analyze a mystery stock chart and have 6 attempts to identify it from <strong>250 top US companies</strong>. Each guess provides color-coded feedback across 6 financial metrics. The backend runs on a <strong>Kubernetes cluster</strong> with a <strong>2-replica Spring Boot API</strong> and <strong>PostgreSQL with PersistentVolumes</strong>. A <strong>Python CronJob</strong> runs daily to fetch fresh stock data via external APIs and generate new puzzles with 30-day lookback to prevent repeats. Services are containerized with <strong>multi-stage Docker builds</strong> and credentials injected via <strong>Kubernetes Secrets</strong>.',
+      technologies: ['Kubernetes', 'Docker', 'Java', 'Spring Boot', 'Python', 'PostgreSQL', 'Next.js', 'React', 'TypeScript', 'Vercel'],
+      githubLink: 'https://github.com/olivergrabner/stockle',
+      demoLink: 'https://www.stockle.fun'
+    },
+    {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
       images: ['/fakemon.mp4','/pack_opening.mp4', '/galary.mp4', '/generate_cards.mp4', '/fakemon_diagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
