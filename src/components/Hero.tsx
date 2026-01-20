@@ -12,7 +12,7 @@ interface ImageSlide {
 export default function Hero() {
   const slides: ImageSlide[] = [
     {
-      image: '/prof_headshot.jpg',
+      image: '/casual_headshot.jpeg',
       blackText: "Hi! I'm Oliver. I am currently pursuing a BS in Computer Science at Texas A&M.",
       orangeText: 'Full Stack | API | Backend | ML'
     },
