@@ -5,6 +5,21 @@ export default function Research() {
   const [expandedBibtex, setExpandedBibtex] = useState<number | null>(null);
 
   const papers = [
+      {
+    title: 'Z-Scores: A Metric for Linguistically Assessing Disfluency Removal',
+    authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
+    venue: '<strong>ICASSP 2025</strong>',
+    image: '/zscore.png',
+    abstract: 'Evaluating disfluency removal in speech requires more than aggregate token-level scores. Traditional word-based metrics such as precision, recall, and F1 (E-Scores) capture overall performance but cannot reveal why models succeed or fail. We introduce Z-Scores, a span-level linguistically-grounded evaluation metric that categorizes system behavior across distinct disfluency types (EDITED, INTJ, PRN). Our deterministic alignment module enables robust mapping between generated text and disfluent transcripts, allowing Z-Scores to expose systematic weaknesses that word-level metrics obscure. By providing category-specific diagnostics, Z-Scores enable researchers to identify model failure modes and design targeted interventions -- such as tailored prompts or data augmentation -- yielding measurable performance improvements. A case study with LLMs shows that Z-scores uncover challenges with INTJ and PRN disfluencies hidden in aggregate F1, directly informing model refinement strategies.',
+    pdfLink: 'https://arxiv.org/pdf/2509.20319',
+    codeLink: 'https://github.com/mariateleki/zscore',
+    bibtex: `@inproceedings{teleki25_zscores,
+  title = {Z-Scores: A Metric for Linguistically Assessing Disfluency Removal},
+  author = {Maria Teleki and Sai Janjur and Haoran Liu and Oliver Grabner and Ketan Verma and Thomas Docog and Xiangjue Dong and Lingfeng Shi and Cong Wang and Stephanie Birkelbach and Jason Kim and Yin Zhang and James Caverlee},
+  year = {2025},
+  booktitle = {ICASSP},
+}`
+  },
     {
       title: 'DRES: Benchmarking LLMs for Disfluency Removal',
       authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
@@ -19,22 +34,7 @@ export default function Research() {
   year = {2025},
   booktitle = {ICASSP},
 }`
-},
-  {
-    title: 'Z-Scores: A Metric for Linguistically Assessing Disfluency Removal',
-    authors: ['Maria Teleki', 'Sai Janjur', 'Haoran Liu', 'Oliver Grabner', 'Ketan Verma', 'Thomas Docog', 'Xiangjue Dong', 'Lingfeng Shi', 'Cong Wang', 'Stephanie Birkelbach', 'Jason Kim', 'Yin Zhang', 'James Caverlee'],
-    venue: '<strong>ICASSP 2025</strong> (Under Review)',
-    image: '/zscore.png',
-    abstract: 'Evaluating disfluency removal in speech requires more than aggregate token-level scores. Traditional word-based metrics such as precision, recall, and F1 (E-Scores) capture overall performance but cannot reveal why models succeed or fail. We introduce Z-Scores, a span-level linguistically-grounded evaluation metric that categorizes system behavior across distinct disfluency types (EDITED, INTJ, PRN). Our deterministic alignment module enables robust mapping between generated text and disfluent transcripts, allowing Z-Scores to expose systematic weaknesses that word-level metrics obscure. By providing category-specific diagnostics, Z-Scores enable researchers to identify model failure modes and design targeted interventions -- such as tailored prompts or data augmentation -- yielding measurable performance improvements. A case study with LLMs shows that Z-scores uncover challenges with INTJ and PRN disfluencies hidden in aggregate F1, directly informing model refinement strategies.',
-    pdfLink: 'https://arxiv.org/pdf/2509.20319',
-    codeLink: 'https://github.com/mariateleki/zscore',
-    bibtex: `@inproceedings{teleki25_zscores,
-  title = {Z-Scores: A Metric for Linguistically Assessing Disfluency Removal},
-  author = {Maria Teleki and Sai Janjur and Haoran Liu and Oliver Grabner and Ketan Verma and Thomas Docog and Xiangjue Dong and Lingfeng Shi and Cong Wang and Stephanie Birkelbach and Jason Kim and Yin Zhang and James Caverlee},
-  year = {2025},
-  booktitle = {ICASSP},
-}`
-  }
+}
   ];
 
   return (
