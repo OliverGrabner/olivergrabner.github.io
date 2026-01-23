@@ -5,7 +5,7 @@ export default function Projects() {
     {
       title: 'Stockle',
       date: 'Dec 2025',
-      images: ['/stockle/stockle-game.png', '/stockle/stockle-win.png', '/stockle/og-image.png'],
+      images: ['/stockle/stockle-1768533167598.mp4', '/stockle/stockle_diagram.png', '/stockle/stockle-game.png', '/stockle/stockle-win.png', '/stockle/og-image.png'],
       description: 'I built a <strong>Wordle-inspired daily stock guessing game</strong> where players analyze a mystery stock chart and have 6 attempts to identify it from <strong>250 top US companies</strong>. Each guess provides color-coded feedback across 6 financial metrics. The backend runs on a <strong>Kubernetes cluster</strong> with a <strong>2-replica Spring Boot API</strong> and <strong>PostgreSQL with PersistentVolumes</strong>. A <strong>Python CronJob</strong> runs daily to fetch fresh stock data via external APIs and generate new puzzles with 30-day lookback to prevent repeats. Services are containerized with <strong>multi-stage Docker builds</strong> and credentials injected via <strong>Kubernetes Secrets</strong>.',
       technologies: ['Kubernetes', 'Docker', 'Java', 'Spring Boot', 'Python', 'PostgreSQL', 'Next.js', 'React', 'TypeScript', 'Vercel'],
       githubLink: 'https://github.com/olivergrabner/stockle',

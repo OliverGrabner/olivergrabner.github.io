@@ -136,13 +136,13 @@ export default function ProjectCard({
                 return (
                   <div
                     key={idx}
-                    className={`${idx === 0 ? 'relative' : 'absolute top-0 left-0'} w-full transition-all duration-500 ease-out cursor-pointer`}
+                    className={`${idx === currentImageIndex ? 'relative' : 'absolute top-0 left-0'} w-full transition-all duration-500 ease-out cursor-pointer`}
                     style={{
                       transform: transformStyle,
                       opacity: offset === 0 ? 1 : 0,
                       zIndex: offset === 0 ? 10 : 0,
                       pointerEvents: offset === 0 ? 'auto' : 'none',
-                      visibility: idx === 0 || offset === 0 ? 'visible' : 'hidden'
+                      visibility: idx === currentImageIndex || offset === 0 ? 'visible' : 'hidden'
                     }}
                     onClick={() => !isSwiping && openLightbox(idx)}
                   >
@@ -153,13 +153,20 @@ export default function ProjectCard({
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload={idx === currentImageIndex ? 'auto' : 'none'}
+                        onError={() => {
+                          const nextIdx = images.findIndex((m, i) =>
+                            i > idx && !m.endsWith('.mp4') && !m.endsWith('.webm')
+                          );
+                          if (nextIdx !== -1) setCurrentImageIndex(nextIdx);
+                        }}
                         className="w-full h-auto object-cover block"
                       />
                     ) : (
                       <img
                         src={img}
                         alt={`${title} - Image ${idx + 1}`}
+                        loading="lazy"
                         className="w-full h-auto object-cover block"
                       />
                     )}
