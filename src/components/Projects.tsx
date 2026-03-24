@@ -50,13 +50,6 @@ export default function Projects() {
       demoLink: 'https://project3-gang-41-frontend.vercel.app/',
     },
     {
-      title: 'Java Swing POS System',
-      date: 'Oct 2025',
-      description: '<strong>JDBC-backed</strong> desktop POS with a <strong>5-table relational schema</strong> and <strong>15 SQL report queries</strong>.',
-      technologies: ['Java', 'Java Swing', 'JDBC', 'PostgreSQL', 'AWS RDS'],
-      githubLink: 'https://github.com/OliverGrabner/boba_pos_system',
-    },
-    {
       title: 'KFW Law Firm Website',
       date: 'Sept 2025',
       description: 'Redesigned a local firm\'s site (<strong>700+ monthly visits</strong>) as sole developer with <strong>Google Analytics</strong>.',
@@ -69,15 +62,7 @@ export default function Projects() {
       description: 'Hackathon data tool that ranks <strong>945 courses</strong> by professor GPA from public grade distributions.',
       technologies: ['Python', 'pandas', 'matplotlib', 'PyQt5'],
       githubLink: 'https://github.com/OliverGrabner/RevilleRankings',
-    },
-    {
-      title: 'Personal Portfolio',
-      date: 'Oct 2025',
-      description: 'This site — <strong>React + TypeScript</strong> with animated card carousels, deployed on <strong>GitHub Pages</strong>.',
-      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS'],
-      githubLink: 'https://github.com/OliverGrabner/olivergrabner.github.io',
-      demoLink: 'https://olivergrabner.com',
-    },
+    }
   ];
 
   return (
