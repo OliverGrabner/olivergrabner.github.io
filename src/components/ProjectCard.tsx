@@ -90,20 +90,6 @@ export default function ProjectCard({
 
   return (
     <div className="mb-16 pb-16 border-b last:border-b-0" style={{ borderColor: 'rgba(193, 95, 60, 0.15)' }}>
-      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-6 gap-2">
-        <div className="flex items-baseline gap-4">
-          <span className="text-xl sm:text-2xl font-bold" style={{ color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}>
-            {projectNumber}
-          </span>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 uppercase tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>
-            {title}
-          </h3>
-        </div>
-        <span className="text-sm sm:text-base text-gray-500 font-medium sm:ml-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-          {date}
-        </span>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
         <div className="md:col-span-2">
           <div className="relative">
@@ -215,6 +201,20 @@ export default function ProjectCard({
         </div>
 
         <div className="md:col-span-3 flex flex-col">
+          <div className="flex items-baseline justify-between mb-4 gap-2">
+            <div className="flex items-baseline gap-3">
+              <span className="text-lg sm:text-xl font-bold" style={{ color: '#C15F3C', fontFamily: 'Inter, sans-serif' }}>
+                {projectNumber}
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 uppercase tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>
+                {title}
+              </h3>
+            </div>
+            <span className="text-sm text-gray-400 font-medium whitespace-nowrap" style={{ fontFamily: 'Inter, sans-serif' }}>
+              {date}
+            </span>
+          </div>
+
           <p
             className="text-gray-700 leading-relaxed mb-4"
             style={{ fontFamily: 'Inter, serif', fontSize: '15px', whiteSpace: 'pre-line' }}
@@ -222,14 +222,14 @@ export default function ProjectCard({
           />
 
           {technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-auto">
+            <div className="flex flex-wrap gap-3 mb-auto">
               {technologies.map((tech, idx) => (
                 <TechIcon key={idx} tech={tech} />
               ))}
             </div>
           )}
 
-          <div className="flex gap-3 pt-6 mt-4 border-t" style={{ borderColor: 'rgba(193, 95, 60, 0.1)' }}>
+          <div className="flex gap-3 pt-4 mt-4">
             {githubLink && (
               <a
                 href={githubLink}
@@ -240,7 +240,7 @@ export default function ProjectCard({
                 onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
               >
-                <FaGithub size={28} />
+                <FaGithub size={20} />
                 <span>GitHub</span>
               </a>
             )}
@@ -254,7 +254,7 @@ export default function ProjectCard({
                 onMouseEnter={(e) => e.currentTarget.style.color = '#A54F32'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#C15F3C'}
               >
-                <FaExternalLinkAlt size={28} />
+                <FaExternalLinkAlt size={18} />
                 <span>Live Demo</span>
               </a>
             )}

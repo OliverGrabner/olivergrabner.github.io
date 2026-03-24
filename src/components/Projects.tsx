@@ -1,75 +1,83 @@
 import ProjectCard from './ProjectCard';
+import TechIcon from './TechIcon';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 export default function Projects() {
-  const projects = [
+  const featuredProjects = [
+    {
+      title: 'Composer',
+      date: 'March 2026',
+      images: ['/projects/composer/diagram.png', '/projects/composer/landing.png', '/projects/composer/dashboard.png'],
+      description: '<strong>8-tool autonomous agent loop</strong> that generates typed system architecture diagrams from natural language. Streams via a <strong>thread-to-async bridge</strong> with a <strong>suspension pattern</strong> that halts and resumes the agent across separate HTTP requests. Exposes an <strong>11-tool MCP server</strong> for external AI tools.',
+      technologies: ['Python', 'FastAPI', 'Gemini', 'MCP', 'SSE', 'WebSocket', 'PostgreSQL'],
+      demoLink: 'https://www.usecomposer.com'
+    },
     {
       title: 'Stockle',
       date: 'Dec 2025',
-      images: ['/stockle/stockle-1768533167598.mp4', '/stockle/stockle_diagram.png', '/stockle/stockle-game.png', '/stockle/stockle-win.png', '/stockle/og-image.png'],
-      description: 'I built a <strong>Wordle-inspired daily stock guessing game</strong> where players analyze a mystery stock chart and have 6 attempts to identify it from <strong>250 top US companies</strong>. Each guess provides color-coded feedback across 6 financial metrics. The backend runs on a <strong>Kubernetes cluster</strong> with a <strong>2-replica Spring Boot API</strong> and <strong>PostgreSQL with PersistentVolumes</strong>. A <strong>Python CronJob</strong> runs daily to fetch fresh stock data via external APIs and generate new puzzles with 30-day lookback to prevent repeats. Services are containerized with <strong>multi-stage Docker builds</strong> and credentials injected via <strong>Kubernetes Secrets</strong>.',
-      technologies: ['Kubernetes', 'Docker', 'Java', 'Spring Boot', 'Python', 'PostgreSQL', 'Next.js', 'React', 'TypeScript', 'Vercel'],
+      images: ['/projects/stockle/stockle-1768533167598.mp4', '/projects/stockle/stockle_diagram.png', '/projects/stockle/stockle-game.png', '/projects/stockle/stockle-win.png', '/projects/stockle/og-image.png'],
+      description: '<strong>Kubernetes-deployed</strong> multi-service system with a daily <strong>Python data pipeline</strong>, <strong>2-replica Spring Boot API</strong>, and <strong>PostgreSQL with PersistentVolumes</strong>. Scores guesses across 6 financial metrics with <strong>cross-scale normalization</strong>.',
+      technologies: ['Kubernetes', 'Docker', 'Spring Boot', 'Python', 'PostgreSQL'],
       githubLink: 'https://github.com/olivergrabner/stockle',
       demoLink: 'https://www.stockle.fun'
     },
     {
       title: 'Fakémon Card Simulator',
       date: 'Jan 2025',
-      images: ['/fakemon.mp4','/pack_opening.mp4', '/galary.mp4', '/generate_cards.mp4', '/fakemon_diagram.png', '/Loss_training.png', '/dcganarchitecture.png'],
-      description: 'I built a <strong>full-stack AI card generator</strong> app that generates Pokémon-like cards by <strong>custom training a Deep Convolutional GAN (DCGAN)</strong> with a unique <strong>96x64 architecture</strong>. I trained the model on <strong>11,000 images</strong>, which is served via a <strong>FastAPI backend</strong>. The RESTful API handles <strong>real-time model inference</strong> and manages a full-stack community gallery. The gallery\'s state is persisted in a <strong>PostgreSQL database optimized with custom SQL indexes</strong> to support "Popular" and "Recent" sorting. I added a comprehensive test suite with <strong> 42 tests </strong> covering unit tests, database, and APIs. The backend is <strong>Dockerized and deployed on Render</strong>, communicating with a Vercel-hosted client that sends an on-load request to <strong>mitigate cold starts</strong>.',
-      technologies: ['Python', 'PyTorch', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'pytest', 'JavaScript', 'Docker', 'Render', 'Vercel'],
+      images: ['/projects/fakemon/fakemon.mp4', '/projects/fakemon/pack-opening.mp4', '/projects/fakemon/gallery.mp4', '/projects/fakemon/generate-cards.mp4', '/projects/fakemon/diagram.png', '/projects/fakemon/loss-training.png', '/projects/fakemon/dcgan-architecture.png'],
+      description: '<strong>DCGAN trained from scratch</strong> on <strong>11,000 images</strong> — modified the standard architecture for <strong>non-square 96×64 generation</strong> across 5 transposed conv layers with a <strong>100D latent space</strong>. Served via <strong>real-time FastAPI inference</strong>.',
+      technologies: ['PyTorch', 'DCGAN', 'FastAPI', 'Docker'],
       githubLink: 'https://github.com/OliverGrabner/fakemon-card-simulator',
       demoLink: 'https://fakemon-card-simulator.vercel.app'
     },
     {
-      title: 'Java Swing POS System',
-      date: 'Oct 2025',
-      images: ['/manager_gui.png','/sales_report.png', '/order_history.png', '/POSrelationalDatabase.png'],
-      description: 'Engineered a POS application with a <strong>Java Swing GUI </strong> and a <strong>cloud-hosted AWS PostgreSQL backend</strong> using JDBC for a local boba shop. \n Designed a <strong>5 table relational database schema</strong> with dynamic updates from the front-end GUI. \n Made a <strong>Python script to seed all 5 tables</strong> and generate <strong>$5M+ in realistic sales data</strong> for testing and validation. \n The manager dashboard calls <strong>15 SQL queries</strong> to generate <strong>visual reports on sales trends and inventory</strong>',
-      technologies: ['Java', 'Java Swing', 'JDBC','PostgreSQL', 'AWS RDS', 'Python'],
-      githubLink: 'https://github.com/OliverGrabner/boba_pos_system'
-    },
-    {
-      title: '🧋 Full-Stack Web POS Platform',
-      date: 'Nov 2025',
-      images: ['/web_pos/pos_sys_kiosk.mp4', '/web_pos/pos_sys_manager.mp4', '/web_pos/pos_sys_reports.png', '/web_pos/pos_sys_login.png'],
-      description: '<strong>Collaborated in a team using Git workflows and CI/CD</strong> to engineer a full-stack POS system with <strong>TypeScript, React, and Express.js</strong>. Built a <strong>RESTful API architecture</strong> connected to an <strong>AWS RDS PostgreSQL database</strong> with connection pooling and database transactions for consistency. Secured authentication via <strong>Google OAuth 2.0</strong> with server-side JWT validation and HTTP-only session cookies. Deployed frontend on <strong>Vercel</strong> and backend on <strong>Render</strong>, supporting multi-user concurrent access.',
-      technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'AWS RDS', 'Google OAuth 2.0', 'Git', 'Vercel', 'Render'],
-      githubLink: 'https://github.com/CSCE331-Fall2025-900-911/project3_gang_41',
-      demoLink: 'https://project3-gang-41-frontend.vercel.app/'
-    },
-    {
       title: 'Y86-64 Processor Design',
       date: 'March 2025',
-      images: ['/y86.png', '/registerfile.png'],
-      description: 'I built a <strong>64-bit Y86 processor</strong> to better understand the fundamentals of computer architecture. The design implemented <strong>six pipelined stages</strong> (fetch, decode, execute, memory, write, PC update) with <strong>19 instructions, 15 registers, and a 4 KB memory</strong> for <strong>variable length instruction fetching</strong>. I engineered <strong>control logic to handle hazards and jumps</strong>, then validated the design by running Y86 assembly programs in both a simulator and my implementation, achieving <strong>full functional parity</strong>. Overall, this project was really fun and taught me more about a side of computer science I rarely visit',
+      images: ['/projects/y86/processor.png', '/projects/y86/registerfile.png'],
+      description: '<strong>Pipelined 64-bit processor</strong> with six stages, 19 instructions, and 4 KB memory. Implements <strong>hazard detection and control logic</strong> for data dependencies and conditional jumps.',
       technologies: ['Logisim', 'Y86-64 ISA', 'Assembly'],
       githubLink: 'https://github.com/OliverGrabner/Y86-64-Processor-Design'
+    },
+  ];
+
+  const otherWork = [
+    {
+      title: 'Web POS Platform',
+      date: 'Nov 2025',
+      description: 'Team-built full-stack POS with <strong>Google OAuth, Express REST API</strong>, and <strong>CI/CD</strong>.',
+      technologies: ['Express', 'OAuth 2.0', 'PostgreSQL', 'CI/CD'],
+      githubLink: 'https://github.com/CSCE331-Fall2025-900-911/project3_gang_41',
+      demoLink: 'https://project3-gang-41-frontend.vercel.app/',
+    },
+    {
+      title: 'Java Swing POS System',
+      date: 'Oct 2025',
+      description: '<strong>JDBC-backed</strong> desktop POS with a <strong>5-table relational schema</strong> and <strong>15 SQL report queries</strong>.',
+      technologies: ['Java', 'Java Swing', 'JDBC', 'PostgreSQL', 'AWS RDS'],
+      githubLink: 'https://github.com/OliverGrabner/boba_pos_system',
     },
     {
       title: 'KFW Law Firm Website',
       date: 'Sept 2025',
-      images: ['/kfwlaw.mp4', '/kfwclient.png'],
-      description: 'I designed and developed a <strong>modern replacement</strong> for a local law firm\'s website (<strong>700+ monthly visits</strong>), redesigning from the ground up to improve usability and <strong>increase conversions</strong>. As the <strong>sole developer</strong>, I translated non-technical requirements to a web application with <strong>integrated Google Analytics</strong> to better understand user behavior and refine the firm\'s online presence',
-      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Netlify', 'Google Analytics 4'],
-      demoLink: 'https://kfwlaw.netlify.app/'
+      description: 'Redesigned a local firm\'s site (<strong>700+ monthly visits</strong>) as sole developer with <strong>Google Analytics</strong>.',
+      technologies: ['React', 'TypeScript', 'Google Analytics'],
+      demoLink: 'https://kfwlaw.netlify.app/',
     },
     {
       title: 'Reville Rankings',
       date: 'Oct 2023',
-      images: ['/revrankings.png'],
-      description: 'In my <strong>first hackathon</strong>, I built a <strong>python-based data analysis tool</strong> that processes Texas A&M University\'s <strong>public grade distribution data from multiple years</strong>. The tool <strong>ranks top-performing professors by GPA</strong> and provides detailed grade breakdowns for <strong>945 unique courses</strong>. Features an <strong>interactive PyQt5 GUI</strong> with <strong>matplotlib visualizations</strong> for easy interpretation of grade distributions.',
+      description: 'Hackathon data tool that ranks <strong>945 courses</strong> by professor GPA from public grade distributions.',
       technologies: ['Python', 'pandas', 'matplotlib', 'PyQt5'],
-      githubLink: 'https://github.com/OliverGrabner/RevilleRankings'
-    }, 
+      githubLink: 'https://github.com/OliverGrabner/RevilleRankings',
+    },
     {
       title: 'Personal Portfolio',
       date: 'Oct 2025',
-      images: ['/website.png'],
-      description: 'In order to show all my projects, I needed a canvas, so I created a portfolio built with <strong>React and TypeScript</strong>. It features <strong>smooth animations</strong>, <strong>dynamic routing</strong>, and a <strong>clean design system</strong>. It showcases projects with <strong>interactive card carousels</strong> and integrates media links. <strong>Deployed on GitHub Pages</strong> with <strong>continuous integration</strong>.',
-      technologies: ['TypeScript', 'React', 'Vite','Tailwind CSS', 'GitHub Pages'],
+      description: 'This site — <strong>React + TypeScript</strong> with animated card carousels, deployed on <strong>GitHub Pages</strong>.',
+      technologies: ['TypeScript', 'React', 'Vite', 'Tailwind CSS'],
       githubLink: 'https://github.com/OliverGrabner/olivergrabner.github.io',
-      demoLink: 'https://olivergrabner.com'
-    }
+      demoLink: 'https://olivergrabner.com',
+    },
   ];
 
   return (
@@ -96,9 +104,75 @@ export default function Projects() {
         </div>
 
         <div>
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard key={index} {...project} index={index} />
           ))}
+        </div>
+
+        {/* Other Work */}
+        <div className="mt-8 pt-12 border-t" style={{ borderColor: 'rgba(193, 95, 60, 0.2)' }}>
+          <h3
+            className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-400 mb-8"
+            style={{ fontFamily: 'Inter, sans-serif' }}
+          >
+            Other Work
+          </h3>
+          <div className="space-y-6">
+            {otherWork.map((project, index) => (
+              <div
+                key={index}
+                className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-0 pb-6 border-b last:border-b-0"
+                style={{ borderColor: 'rgba(193, 95, 60, 0.08)' }}
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <h4
+                      className="text-base font-semibold text-gray-900"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {project.title}
+                    </h4>
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <FaGithub size={15} />
+                      </a>
+                    )}
+                    {project.demoLink && (
+                      <a
+                        href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <FaExternalLinkAlt size={13} />
+                      </a>
+                    )}
+                  </div>
+                  <p
+                    className="text-sm text-gray-600 mb-2"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    dangerouslySetInnerHTML={{ __html: project.description }}
+                  />
+                  <div className="flex flex-wrap gap-2.5">
+                    {project.technologies.map((tech, idx) => (
+                      <TechIcon key={idx} tech={tech} small />
+                    ))}
+                  </div>
+                </div>
+                <span
+                  className="text-sm text-gray-400 font-medium sm:ml-6 whitespace-nowrap"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  {project.date}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

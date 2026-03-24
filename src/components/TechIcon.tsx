@@ -1,80 +1,115 @@
+import StackIcon from 'tech-stack-icons';
+import { SiFastapi } from 'react-icons/si';
+import type { IconType } from 'react-icons';
+
 interface TechIconProps {
   tech: string;
+  small?: boolean;
 }
 
-export default function TechIcon({ tech }: TechIconProps) {
-  // Original orange shades organized by category
-  const techCategories: Record<string, string> = {
-    // languages - Base orange (main Anthropic color)
-    'Python': '#C15F3C',
-    'Java': '#C15F3C',
-    'TypeScript': '#C15F3C',
-    'JavaScript': '#C15F3C',
+// tech-stack-icons icon IDs
+const stackIconNames: Record<string, string> = {
+  'react': 'react',
+  'python': 'python',
+  'typescript': 'typescript',
+  'javascript': 'js',
+  'java': 'java',
+  'postgresql': 'postgresql',
+  'docker': 'docker',
+  'kubernetes': 'kubernetes',
+  'pytorch': 'pytorch',
+  'html': 'html5',
+  'css': 'css3',
+  'node.js': 'nodejs',
+  'express': 'expressjs',
+  'next.js': 'nextjs',
+  'tailwind css': 'tailwindcss',
+  'tailwind': 'tailwindcss',
+  'vite': 'vitejs',
+  'git': 'git',
+  'spring boot': 'spring',
+  'vercel': 'vercel',
+  'aws': 'aws',
+  'aws rds': 'aws',
+  'render': 'render',
+  'netlify': 'netlify',
+  'pandas': 'pandas',
+  'sqlalchemy': 'sqlalchemy',
+  'google analytics': 'analytics',
+  'google analytics 4': 'analytics',
+  'analytics': 'analytics',
+  'oauth 2.0': 'oauth',
+  'google oauth 2.0': 'oauth',
+  'pytest': 'pytest',
+  'google gemini': 'gemini',
+  'gemini': 'gemini',
+  'github pages': 'github',
+  'mcp': 'anthropic',
+};
 
-    // ml 
-    'PyTorch': '#C15F3C',
-    'pandas': '#C15F3C',
-    'matplotlib': '#C15F3C',
+// react-icons fallback
+const siIconFallbacks: Record<string, IconType> = {
+  'fastapi': SiFastapi,
+};
 
-    // Backend/APIs - Darker orange
-    'FastAPI': '#93462aff',
-    'JDBC': '#93462aff',
-    'SQLAlchemy': '#93462aff',
-    'Node.js': '#93462aff',
-    'Express': '#93462aff',
+// Brand colors for react-icons fallbacks and letter avatars
+const techColors: Record<string, string> = {
+  'fastapi': '#009688',
+  'logisim': '#8F3F28',
+  'y86-64 isa': '#8F3F28',
+  'assembly': '#624FE8',
+  'dcgan': '#EE4C2C',
+  'sse': '#C15F3C',
+  'ci/cd': '#C15F3C',
+};
 
-    // Frontend/UI - Lighter orange
-    'React': '#df7a61ff',
-    'Tailwind CSS': '#df7a61ff',
-    'Vite': '#df7a61ff',
-    'Java Swing': '#df7a61ff',
-    'PyQt5': '#df7a61ff',
-    'Google Analytics 4': '#df7a61ff',
-    'HTML': '#df7a61ff',
-    'CSS': '#df7a61ff',
+export default function TechIcon({ tech, small }: TechIconProps) {
+  const key = tech.toLowerCase();
+  const iconSize = small ? 14 : 16;
 
+  const renderIcon = () => {
+    // Try tech-stack-icons
+    const stackName = stackIconNames[key];
+    if (stackName) {
+      return (
+        <div className="flex-shrink-0 flex items-center justify-center" style={{ width: iconSize, height: iconSize }}>
+          <StackIcon name={stackName as any} style={{ width: iconSize, height: iconSize, display: 'block' }} />
+        </div>
+      );
+    }
 
-    // Databases - Even darker
-    'PostgreSQL': '#c77700ff',
-    'AWS': '#c77700ff',
-    'AWS RDS': '#c77700ff',
+    // Try react-icons fallback
+    const FallbackIcon = siIconFallbacks[key];
+    if (FallbackIcon) {
+      const color = techColors[key] || '#C15F3C';
+      return <FallbackIcon size={iconSize} style={{ color }} className="flex-shrink-0" />;
+    }
 
-    // Testing - Dark orange
-    'pytest': '#c77700ff',
-
-    // Authentication/Security - Medium dark
-    'Google OAuth 2.0': '#A54F32',
-
-    // Version Control - Medium orange
-    'Git': '#C15F3C',
-
-    // DevOps/Infrastructure - Mid-light
-    'Docker': '#c48a35ff',
-    'Render': '#c48a35ff',
-    'Vercel': '#c48a35ff',
-    'Netlify': '#c48a35ff',
-    'GitHub Pages': '#c48a35ff',
-
-    // Hardware/Low-level - Very dark
-    'Logisim': '#8F3F28',
-    'Y86-64 ISA': '#8F3F28',
-    'Assembly': '#8F3F28',
-
-    // Analytics/Monitoring - Light
+    // No icon available
+    return null;
   };
 
-  // Fallback color for uncategorized techs
-  const backgroundColor = techCategories[tech] || '#CC6540';
+  const icon = renderIcon();
 
   return (
-    <span
-      className="px-4 py-2 text-sm font-semibold text-white rounded-full transition-all duration-200 hover:shadow-md"
+    <div
+      className={`inline-flex items-center ${icon ? 'gap-1.5' : ''} ${small ? 'px-2 py-0.5' : 'px-2.5 py-1'}`}
       style={{
-        backgroundColor,
-        fontFamily: 'Inter, sans-serif'
+        borderRadius: '6px',
+        backgroundColor: 'rgba(193, 95, 60, 0.07)',
+        border: '1px solid rgba(193, 95, 60, 0.15)',
       }}
     >
-      {tech}
-    </span>
+      {icon}
+      <span
+        className="text-gray-700 font-medium whitespace-nowrap leading-none"
+        style={{
+          fontSize: small ? '11px' : '12px',
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
+        {tech}
+      </span>
+    </div>
   );
 }

@@ -12,22 +12,22 @@ interface ImageSlide {
 export default function Hero() {
   const slides: ImageSlide[] = [
     {
-      image: '/casual_headshot.jpeg',
+      image: '/hero/casual-headshot.jpeg',
       blackText: "Hi! I'm Oliver. I am currently pursuing a BS in Computer Science at Texas A&M.",
-      orangeText: 'Full Stack | API | Backend | ML'
+      orangeText: 'Full Stack | Backend | ML | Research'
     },
     {
-      image: '/nature.jpg',
+      image: '/hero/nature.jpg',
       blackText: "I love nature and taking pictures of nature. Recently I got the chance to hike in Seattle!",
       orangeText: 'Seattle, Washington, USA'
     },
     {
-      image: '/lucky.jpeg',
+      image: '/hero/lucky.jpeg',
       blackText: "Here is my dog named Lucky! He is a 7 year old labradoodle who barks if you don't walk him early enough.",
       orangeText: 'Austin, Texas, USA'
     },
     {
-      image: '/chicken.jpeg',
+      image: '/hero/chicken.jpeg',
       blackText: "I love to cook! I'm best at making Tacos, Steak, Burgers, Hummus, Breakfast Burritos, etc..",
       orangeText: 'Los Gatos, California, USA'
     }
