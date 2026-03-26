@@ -7,7 +7,7 @@ export default function Projects() {
     {
       title: 'Composer',
       date: 'March 2026',
-      images: ['/projects/composer/diagram.png', '/projects/composer/landing.png', '/projects/composer/dashboard.png'],
+      images: ['/projects/composer/demo.mp4', '/projects/composer/diagram.png', '/projects/composer/landing.png', '/projects/composer/dashboard.png'],
       description: '<strong>8-tool autonomous agent loop</strong> that generates typed system architecture diagrams from natural language. Streams via a <strong>thread-to-async bridge</strong> with a <strong>suspension pattern</strong> that halts and resumes the agent across separate HTTP requests. Exposes an <strong>11-tool MCP server</strong> for external AI tools.',
       technologies: ['Python', 'FastAPI', 'Gemini', 'MCP', 'SSE', 'WebSocket', 'PostgreSQL'],
       demoLink: 'https://www.usecomposer.com'
