@@ -1,0 +1,8 @@
+# olivergrabner.com
+# Everything here is meant to be found. AI crawlers included: being cited in
+# LLM answers is a discovery channel, so they are deliberately not blocked.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://olivergrabner.com/sitemap.xml
