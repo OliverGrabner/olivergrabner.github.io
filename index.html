@@ -121,7 +121,7 @@
 <style>
   :root{
     --font:"Lora",Georgia,"Times New Roman",serif;
-    --fs:15.5px; --lh:1.68; --measure:52rem;
+    --fs:.97rem; --lh:1.68; --measure:52rem;   /* .97rem = 15.5px at a 16px root */
     --gap:1.7rem;        /* space above a section heading */
     --bg:#f7f2ed;        /* cream */
     --ink:#202020;       /* main dark */
@@ -133,6 +133,11 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
+  /* The whole page sits at 90% of its former scale: every rem, em and the
+     px-free --fs shrink together, so proportions are untouched. Percent (not
+     px) keeps a reader who raised their browser default font size in charge.
+     Phones are excluded - the 620px block below is already tuned for them. */
+  @media (min-width:621px){ html{font-size:90%} }
   body{
     margin:0; background:var(--bg); color:var(--body);
     font-family:var(--font); font-size:var(--fs); line-height:var(--lh);
@@ -152,7 +157,7 @@
 
   main{max-width:var(--measure); margin:0 auto; padding:3.5rem 1.4rem 5rem}
 
-  .banner{display:block; width:100%; height:auto; max-height:230px; object-fit:cover; margin:0 0 2.2rem}
+  .banner{display:block; width:100%; height:auto; max-height:14.375rem; object-fit:cover; margin:0 0 2.2rem}
 
   h1{font-size:2.05rem; font-weight:600; color:var(--ink);
      letter-spacing:-.01em; line-height:1.2; margin:0 0 1.6rem}
@@ -218,7 +223,7 @@
   .projects .desc::after{content:""; flex:1 1 auto; min-width:1.2em; height:.4em;
     margin-right:-1.05rem;
     background-image:radial-gradient(circle at center, #c9c1b3 1.05px, rgba(0,0,0,0) 1.15px);
-    background-size:6px 100%; background-repeat:repeat-x; background-position:0 100%}
+    background-size:.375rem 100%; background-repeat:repeat-x; background-position:0 100%}
 
   /* GitHub mark, drawn from the inline <symbol> at the top of <body>. currentColor
      means it takes --faint and hovers blue like every other link, rather than
