@@ -90,36 +90,31 @@
 
   gtag('js', new Date());
 
-  // Everything gtag can collect: enhanced measurement, Google Signals'
-  // cross-device joins, ad-platform sync, and the full referrer rather than
-  // the hostname-only default.
+  // A pseudonymous id we mint ourselves - never PII. Safari caps the _ga
+  // cookie at 7 days, so without this a returning visitor counts as a brand
+  // new one every week.
+  var uid = null;
+  try {
+    uid = localStorage.getItem('ga-uid');
+    if (!uid){
+      uid = (crypto.randomUUID ? crypto.randomUUID()
+                               : String(Date.now()) + Math.random().toString(36).slice(2));
+      localStorage.setItem('ga-uid', uid);
+    }
+  } catch (e) {}
+
+  // Enhanced measurement, Google Signals (cross-device joins + demographics),
+  // and the full referrer rather than the hostname-only default. Location,
+  // device, browser and language are GA4 built-in dimensions, so there is
+  // nothing to collect for them here.
   gtag('config', window.GA_ID, {
     send_page_view:         true,
     allow_google_signals:   true,
     allow_ad_personalization_signals: true,
     ignore_referrer:        false,
-    page_referrer:          document.referrer || undefined
+    page_referrer:          document.referrer || undefined,
+    user_id:                uid || undefined
   });
-
-  // Environment dimensions, registered once so they ride along on every hit.
-  // Register these as custom dimensions in GA4 (Admin > Custom definitions)
-  // for them to show up in reports.
-  (function(){
-    var nav = navigator, scr = screen;
-    var conn = nav.connection || {};
-    gtag('set', 'user_properties', {
-      viewport:    innerWidth + 'x' + innerHeight,
-      screen_size: scr.width + 'x' + scr.height,
-      pixel_ratio: String(devicePixelRatio || 1),
-      language:    nav.language || '',
-      timezone:    (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; } })(),
-      color_scheme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-      touch:       (('ontouchstart' in window) || nav.maxTouchPoints > 0) ? 'yes' : 'no',
-      connection:  conn.effectiveType || '',
-      cpu_cores:   String(nav.hardwareConcurrency || ''),
-      device_memory: String(nav.deviceMemory || '')
-    });
-  })();
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -423,7 +418,7 @@
   checkScroll();
 
   // --- section visibility ----------------------------------------------
-  // Which parts of the page were actually looked at, keyed by heading text.
+  // Which parts of the page were actually read, keyed by heading text.
   if (window.IntersectionObserver){
     var seen = {};
     var io = new IntersectionObserver(function(entries){
@@ -441,16 +436,12 @@
     document.querySelectorAll("h1, h2").forEach(function(h){ io.observe(h); });
   }
 
-  // --- copy, print, and context menu ------------------------------------
+  // --- copied text -------------------------------------------------------
+  // Usually an email address or a paper title - a strong signal of intent.
   document.addEventListener("copy", function(){
     var sel = (getSelection && getSelection().toString()) || '';
-    gtag('event', 'text_copy', {
-      copied_chars: sel.length,
-      copied_text:  sel.trim().slice(0, 100)
-    });
+    gtag('event', 'text_copy', { copied_text: sel.trim().slice(0, 100) });
   });
-  addEventListener("beforeprint", function(){ gtag('event', 'page_print'); });
-  document.addEventListener("contextmenu", function(){ gtag('event', 'context_menu'); });
 
   // --- engaged time ------------------------------------------------------
   // Wall-clock time and time with the tab actually in front, flushed on the
@@ -460,7 +451,6 @@
     if (document.visibilityState === "hidden"){
       if (lastShown) visibleMs += Date.now() - lastShown;
       lastShown = 0;
-      gtag('event', 'tab_hidden', { visible_seconds: Math.round(visibleMs / 1000) });
     } else {
       lastShown = Date.now();
     }
@@ -474,24 +464,11 @@
     gtag('event', 'page_exit', {
       total_seconds:   Math.round((Date.now() - t0) / 1000),
       visible_seconds: Math.round(visibleMs / 1000),
-      max_scroll:      Object.keys(hit).length ? Math.max.apply(null, Object.keys(hit).map(Number)) : 0,
-      transport_type:  'beacon'
+      max_scroll:      Object.keys(hit).length ? Math.max.apply(null, Object.keys(hit).map(Number)) : 0
     });
   }
   addEventListener("pagehide", flush);
   addEventListener("beforeunload", flush);
-
-  // --- load performance --------------------------------------------------
-  addEventListener("load", function(){
-    var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
-    if (!nav) return;
-    gtag('event', 'page_timing', {
-      load_ms:      Math.round(nav.loadEventEnd - nav.startTime),
-      dom_ready_ms: Math.round(nav.domContentLoadedEventEnd - nav.startTime),
-      ttfb_ms:      Math.round(nav.responseStart - nav.startTime),
-      nav_type:     nav.type
-    });
-  });
 })();
 </script>
 </body>
