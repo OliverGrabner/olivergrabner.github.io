@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://olivergrabner.com/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Oliver Grabner — LLM research at Texas A&amp;M">
+<meta property="og:image:alt" content="Oliver Grabner — Research at Texas A&amp;M">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Oliver Grabner — LLM Research @ Texas A&amp;M">
@@ -63,46 +63,24 @@
 }
 </script>
 
-<!-- GA4 with Consent Mode v2. The consent default is pushed before config, so
-     no analytics cookie is written until it is granted. -->
+<!-- GA4, configured for maximum signal and no consent prompt: every Consent
+     Mode v2 signal is granted up front, so gtag never waits on a banner and
+     the client id / session cookies are written on first paint. -->
 <script>
   window.GA_ID = "G-F46CFR3P93";   // existing GA4 property for olivergrabner.com
-
-  // Flip to true to show the consent bar to every visitor rather than only
-  // those we detect as EEA/UK. See the note by needsConsent() below.
-  window.CONSENT_ALWAYS_ASK = false;
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
 
-  // Timezone is a proxy for "probably in the EEA/UK", not an authority - a VPN
-  // or a travelling visitor can be misread. Over-matching is the safe direction
-  // (it only means someone sees a banner they didn't strictly need), and an
-  // unreadable timezone falls through to asking.
-  function needsConsent(){
-    if (window.CONSENT_ALWAYS_ASK) return true;
-    try {
-      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-      return /^Europe\//.test(tz) ||
-             /^Atlantic\/(Azores|Canary|Faroe|Madeira|Reykjavik)/.test(tz);
-    } catch (e) { return true; }
-  }
-
-  var stored = null;
-  try { stored = localStorage.getItem("consent-analytics"); } catch (e) {}
-
-  // granted unless we're gating this visitor and they haven't answered yet
-  var granted = stored ? (stored === "granted") : !needsConsent();
-
   gtag('consent', 'default', {
-    ad_storage:          'denied',
-    ad_user_data:        'denied',
-    ad_personalization:  'denied',
-    analytics_storage:   granted ? 'granted' : 'denied',
-    wait_for_update:     500
+    ad_storage:             'granted',
+    ad_user_data:           'granted',
+    ad_personalization:     'granted',
+    analytics_storage:      'granted',
+    functionality_storage:  'granted',
+    personalization_storage:'granted',
+    security_storage:       'granted'
   });
-
-  window.CONSENT_PENDING = !stored && !granted;
 
   // Loaded from GA_ID above so the Measurement ID lives in exactly one place.
   var ga = document.createElement("script");
@@ -111,7 +89,37 @@
   document.head.appendChild(ga);
 
   gtag('js', new Date());
-  gtag('config', window.GA_ID);
+
+  // Everything gtag can collect: enhanced measurement, Google Signals'
+  // cross-device joins, ad-platform sync, and the full referrer rather than
+  // the hostname-only default.
+  gtag('config', window.GA_ID, {
+    send_page_view:         true,
+    allow_google_signals:   true,
+    allow_ad_personalization_signals: true,
+    ignore_referrer:        false,
+    page_referrer:          document.referrer || undefined
+  });
+
+  // Environment dimensions, registered once so they ride along on every hit.
+  // Register these as custom dimensions in GA4 (Admin > Custom definitions)
+  // for them to show up in reports.
+  (function(){
+    var nav = navigator, scr = screen;
+    var conn = nav.connection || {};
+    gtag('set', 'user_properties', {
+      viewport:    innerWidth + 'x' + innerHeight,
+      screen_size: scr.width + 'x' + scr.height,
+      pixel_ratio: String(devicePixelRatio || 1),
+      language:    nav.language || '',
+      timezone:    (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; } })(),
+      color_scheme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      touch:       (('ontouchstart' in window) || nav.maxTouchPoints > 0) ? 'yes' : 'no',
+      connection:  conn.effectiveType || '',
+      cpu_cores:   String(nav.hardwareConcurrency || ''),
+      device_memory: String(nav.deviceMemory || '')
+    });
+  })();
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,30 +264,6 @@
     .projects .repo:last-child{margin-bottom:0}
   }
 
-  /* --- cookie consent bar: only rendered for visitors we consent-gate --- */
-  #consent{position:fixed; left:50%; bottom:1.1rem; transform:translateX(-50%);
-    display:none; align-items:center; gap:.85rem; z-index:60;
-    width:calc(100vw - 2.2rem); max-width:34rem;
-    background:#fff; border:1px solid var(--rule); border-radius:10px;
-    padding:.7rem .9rem; box-shadow:0 3px 16px rgba(0,0,0,.10);
-    font-size:.86rem; line-height:1.45; color:var(--body)}
-  #consent.show{display:flex}
-  #consent p{margin:0; flex:1}
-  #consent .btns{display:flex; gap:.4rem; flex-shrink:0}
-  #consent button{font:inherit; font-size:.84rem; cursor:pointer;
-    border:1px solid var(--rule); border-radius:6px; padding:.32rem .7rem;
-    background:#fff; color:var(--body);
-    transition:border-color .12s ease, color .12s ease, background .12s ease}
-  #consent button:hover{border-color:var(--faint); color:var(--ink)}
-  #consent button.ok{background:var(--blue); border-color:var(--blue); color:#fff}
-  #consent button.ok:hover{background:#155ab6; border-color:#155ab6; color:#fff}
-  #consent button:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
-  @media (max-width:620px){
-    #consent{flex-direction:column; align-items:stretch; gap:.6rem; bottom:.7rem}
-    #consent .btns{justify-content:flex-end}
-  }
-  @media print{ #consent{display:none !important} }
-
 </style>
 </head>
 <body>
@@ -390,28 +374,9 @@
 
 </main>
 
-<div id="consent" role="dialog" aria-live="polite" aria-label="Analytics consent">
-  <p>I use Google Analytics to see how people find this page. No ads, no tracking across sites.</p>
-  <span class="btns">
-    <button type="button" id="consent-no">Decline</button>
-    <button type="button" class="ok" id="consent-yes">Accept</button>
-  </span>
-</div>
-
 <script>
-  // --- consent bar ------------------------------------------------------
-  (function(){
-    var bar = document.getElementById("consent");
-    if (window.CONSENT_PENDING) bar.classList.add("show");
-
-    function choose(value){
-      try { localStorage.setItem("consent-analytics", value); } catch (e) {}
-      gtag('consent', 'update', { analytics_storage: value });
-      bar.classList.remove("show");
-    }
-    document.getElementById("consent-yes").onclick = function(){ choose("granted"); };
-    document.getElementById("consent-no").onclick  = function(){ choose("denied");  };
-  })();
+(function(){
+  var t0 = Date.now();
 
   // --- outbound / resume / email clicks ---------------------------------
   // Distinct event names so these don't collide with GA4's built-in
@@ -432,10 +397,102 @@
     if (/^https?:\/\//i.test(href) && a.hostname !== location.hostname){
       gtag('event', 'outbound_click', {
         link_domain: a.hostname,
-        link_url: a.href
+        link_url:    a.href,
+        link_text:   (a.textContent || '').trim().slice(0, 100)
       });
     }
   });
+
+  // --- scroll depth -----------------------------------------------------
+  // Enhanced measurement only reports a single 90% scroll; these give the
+  // shape of how far down the page people actually get.
+  var marks = [25, 50, 75, 100], hit = {};
+  function checkScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - innerHeight;
+    var pct = max > 0 ? Math.round((scrollY / max) * 100) : 100;
+    for (var i = 0; i < marks.length; i++){
+      var m = marks[i];
+      if (pct >= m && !hit[m]){
+        hit[m] = true;
+        gtag('event', 'scroll_depth', { percent_scrolled: m });
+      }
+    }
+  }
+  addEventListener("scroll", checkScroll, { passive: true });
+  checkScroll();
+
+  // --- section visibility ----------------------------------------------
+  // Which parts of the page were actually looked at, keyed by heading text.
+  if (window.IntersectionObserver){
+    var seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var name = (en.target.textContent || '').trim().slice(0, 60);
+        if (seen[name]) return;
+        seen[name] = true;
+        gtag('event', 'section_view', {
+          section_name: name,
+          seconds_in:   Math.round((Date.now() - t0) / 1000)
+        });
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll("h1, h2").forEach(function(h){ io.observe(h); });
+  }
+
+  // --- copy, print, and context menu ------------------------------------
+  document.addEventListener("copy", function(){
+    var sel = (getSelection && getSelection().toString()) || '';
+    gtag('event', 'text_copy', {
+      copied_chars: sel.length,
+      copied_text:  sel.trim().slice(0, 100)
+    });
+  });
+  addEventListener("beforeprint", function(){ gtag('event', 'page_print'); });
+  document.addEventListener("contextmenu", function(){ gtag('event', 'context_menu'); });
+
+  // --- engaged time ------------------------------------------------------
+  // Wall-clock time and time with the tab actually in front, flushed on the
+  // way out. pagehide fires where unload does not (bfcache, mobile Safari).
+  var visibleMs = 0, lastShown = document.visibilityState === "visible" ? Date.now() : 0;
+  document.addEventListener("visibilitychange", function(){
+    if (document.visibilityState === "hidden"){
+      if (lastShown) visibleMs += Date.now() - lastShown;
+      lastShown = 0;
+      gtag('event', 'tab_hidden', { visible_seconds: Math.round(visibleMs / 1000) });
+    } else {
+      lastShown = Date.now();
+    }
+  });
+
+  var flushed = false;
+  function flush(){
+    if (flushed) return;
+    flushed = true;
+    if (lastShown) visibleMs += Date.now() - lastShown;
+    gtag('event', 'page_exit', {
+      total_seconds:   Math.round((Date.now() - t0) / 1000),
+      visible_seconds: Math.round(visibleMs / 1000),
+      max_scroll:      Object.keys(hit).length ? Math.max.apply(null, Object.keys(hit).map(Number)) : 0,
+      transport_type:  'beacon'
+    });
+  }
+  addEventListener("pagehide", flush);
+  addEventListener("beforeunload", flush);
+
+  // --- load performance --------------------------------------------------
+  addEventListener("load", function(){
+    var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    if (!nav) return;
+    gtag('event', 'page_timing', {
+      load_ms:      Math.round(nav.loadEventEnd - nav.startTime),
+      dom_ready_ms: Math.round(nav.domContentLoadedEventEnd - nav.startTime),
+      ttfb_ms:      Math.round(nav.responseStart - nav.startTime),
+      nav_type:     nav.type
+    });
+  });
+})();
 </script>
 </body>
 </html>
