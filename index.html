@@ -113,7 +113,11 @@
     allow_ad_personalization_signals: true,
     ignore_referrer:        false,
     page_referrer:          document.referrer || undefined,
-    user_id:                uid || undefined
+    user_id:                uid || undefined,
+
+    // gtag ignores the ?debug_mode=1 URL parameter on its own (that is a Tag
+    // Manager thing), so wire it up by hand for GA4 DebugView.
+    debug_mode:             /[?&]debug_mode=1/.test(location.search) || undefined
   });
 </script>
 
