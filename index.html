@@ -193,6 +193,8 @@
 
   /* inline brand marks inside prose */
   .intro img.mark{height:1.15em; width:auto; vertical-align:-.22em; margin:0 .12em}
+  /* cropped wordmark: G cap height is 78% of image height, baseline sits 22% above the bottom (g descender) */
+  .intro img.mark.google{height:1.43em; vertical-align:-.4em; margin:0 .1em}
   .intro img.mark.mono{filter:grayscale(1) contrast(2.7)}  /* blue tile to near-ink, the S stays white */
 
   /* white-on-transparent logo needs a dark chip to read on a light page */
@@ -295,8 +297,8 @@
   <div class="intro">
     <p>
       Hi! I'm Oliver, an undergrad researcher @ Texas A&M <img class="mark" src="img/logos/tamu.png" alt="Texas A&amp;M"> advised by <a href="https://people.engr.tamu.edu/caverlee/">Dr.
-      James Caverlee</a>. I'm currently most interested in agents, reasoning, and evaluations. Previously I interned at <b>Google</b>
-      <img class="mark" src="img/logos/google.webp" alt="Google"> on the Meet AI
+      James Caverlee</a>. I'm currently most interested in agents, reasoning, and evaluations. Previously I interned at
+      <img class="mark google" src="img/logos/old-google-logo.webp" alt="Google"> on the Meet AI
       "<a href="https://workspace.google.com/solutions/ai/ai-note-taking/">Take Notes for Me</a>"
       backend, and at <a href="https://semiconductor.samsung.com/sas/"><b>Samsung</b></a>
       <img class="mark mono" src="img/logos/samsung.webp" alt="Samsung">, building async backend services
