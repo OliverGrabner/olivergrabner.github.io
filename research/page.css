@@ -1,0 +1,126 @@
+/* Shared style for research pages. Same tokens, type and paper grain as the homepage. */
+:root{
+  --font:"Lora",Georgia,"Times New Roman",serif;
+  --fs:.97rem; --lh:1.68; --measure:46rem;
+  --gap:1.9rem;
+  --bg:#f7f2ed;
+  --paper:#fbf8f4;
+  --ink:#202020;
+  --body:#615f5e;
+  --faint:#8c8987;
+  --rule:#d8d2c8;
+  --blue:#1a73e8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (min-width:621px){ html{font-size:90%} }
+body{
+  margin:0; background:var(--bg); color:var(--body);
+  font-family:var(--font); font-size:var(--fs); line-height:var(--lh);
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'240'%20height%3D'240'%3E%3Cfilter%20id%3D't'%20color-interpolation-filters%3D'sRGB'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.3'%20numOctaves%3D'5'%20stitchTiles%3D'stitch'%20result%3D'n'%2F%3E%3CfeDiffuseLighting%20in%3D'n'%20lighting-color%3D'%23ffffff'%20surfaceScale%3D'2.4'%3E%3CfeDistantLight%20azimuth%3D'45'%20elevation%3D'58'%2F%3E%3C%2FfeDiffuseLighting%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%23t)'%2F%3E%3C%2Fsvg%3E");
+  background-size:340px; background-position:center; opacity:.6; mix-blend-mode:soft-light;
+}
+@media print{ body::before{display:none} }
+
+main{max-width:var(--measure); margin:0 auto; padding:3rem 1.4rem 4rem}
+
+.crumb{font-size:.92em; color:var(--faint); margin:0 0 2rem}
+.crumb a{color:var(--faint)}
+
+h1{font-size:1.9rem; font-weight:600; color:var(--ink); letter-spacing:-.01em; line-height:1.22;
+  margin:0 0 .6rem; text-wrap:balance}
+.meta{font-style:italic; color:var(--faint); margin:0 0 1.6rem}
+.meta a{color:var(--faint)}
+h2{font-size:1.05em; font-weight:600; color:var(--ink); margin:var(--gap) 0 0}
+hr{border:none; border-top:1px solid var(--rule); margin:.2rem 0 .9rem}
+p{margin:0 0 .9rem}
+.lead{color:var(--ink)}
+
+a{color:inherit; text-decoration:underline; text-underline-offset:.16em;
+  text-decoration-color:var(--faint); text-decoration-thickness:1.3px;
+  transition:color .12s ease, text-decoration-color .12s ease}
+a:hover{color:var(--blue); text-decoration-color:var(--blue); text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+
+figure{margin:1.6rem 0 1.8rem}
+figure img{display:block; width:100%; height:auto; border:1px solid var(--rule)}
+figcaption{font-size:.88em; color:var(--faint); line-height:1.55; margin-top:.55rem}
+figcaption a{color:var(--faint)}
+
+ul, ol{margin:.15rem 0 0; padding-left:1.4rem}
+li{padding:.12rem 0}
+li b{color:var(--ink); font-weight:600}
+code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.86em; color:var(--ink)}
+
+/* team chat excerpt */
+.chat{background:var(--paper); border:1px solid var(--rule); padding:1.1rem 1.2rem 1rem; display:grid; gap:.85rem}
+.chat .msg{display:grid; gap:.1rem}
+.chat .who{font-size:.86em; font-weight:600; color:var(--blue)}
+.chat .msg p{margin:0; color:var(--ink)}
+.chat .act{font-size:.92em; color:var(--body); margin-top:-.35rem}
+.chat .msg + .act{margin-top:.15rem}
+.chat .act .who{font-size:1em}
+
+.links-row{display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-top:var(--gap)}
+.links-row a{color:var(--blue); text-decoration-color:rgba(26,115,232,.55)}
+
+::selection{background:rgba(26,115,232,.16)}
+
+/* write-up structure */
+.back{display:inline-block; font-size:.92em; color:var(--faint); text-decoration:none; margin:0 0 1.8rem}
+.back:hover{color:var(--blue)}
+.date{font-style:italic; color:var(--faint); margin:0 0 1.6rem}
+.hero{display:block; width:100%; height:auto; border:1px solid var(--rule); margin:0 0 1.8rem}
+.date + .repo{margin-top:-1.2rem}
+.repo{margin:0 0 1.6rem}
+.gh-link{display:inline-flex; align-items:center; gap:.35rem; color:var(--blue); text-decoration:underline;
+  text-decoration-color:rgba(26,115,232,.6); text-underline-offset:.16em}
+.gh-link svg{width:15px; height:15px; fill:currentColor; flex:none}
+.gh-link:hover{color:#0d47a1; text-decoration-color:#0d47a1}
+h3{font-size:1em; font-weight:600; color:var(--ink); margin:1.5rem 0 .4rem}
+p code, li code, td code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.84em; color:var(--ink)}
+ol.steps{padding-left:1.4rem}
+ol.steps li{padding:.2rem 0}
+blockquote.prompt{margin:.4rem 0 1.2rem; padding:.8rem 1rem; background:var(--paper); border:1px solid var(--rule);
+  font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.8em; line-height:1.6; color:var(--ink)}
+.note{font-size:.9em; color:var(--faint); margin-top:.5rem}
+.tablewrap{overflow-x:auto; margin:.4rem 0 0}
+table.plain{width:100%; border-collapse:collapse; font-size:.88em; background:var(--paper); border:1px solid var(--rule)}
+table.plain th{font-weight:400; font-style:italic; color:var(--faint); text-align:left; padding:.55rem .7rem; border-bottom:1px solid var(--rule); white-space:nowrap}
+table.plain td{padding:.45rem .7rem; border-bottom:1px solid #e4ded5; vertical-align:top}
+table.plain tr:last-child td{border-bottom:0}
+table.plain .r{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+table.cleanup td:first-child{white-space:nowrap}
+@media (max-width:620px){
+  table.cleanup{table-layout:fixed}
+  table.cleanup th{white-space:normal}
+  table.cleanup th:first-child{width:48%}
+  table.cleanup th:last-child{width:3.6rem}
+  table.cleanup td:first-child{white-space:normal; word-break:break-all}
+}
+table.cleanup tr.pruned td{color:#9a4f42}
+table.cleanup tr.pruned code{color:#9a4f42; text-decoration:line-through; text-decoration-color:rgba(196,97,79,.6)}
+table.cleanup tr.kept td:nth-child(2){color:var(--faint)}
+ul + p, ol + p{margin-top:.9rem}
+dl.facts{display:grid; grid-template-columns:8rem minmax(0,1fr); margin:.2rem 0 0}
+dl.facts dt, dl.facts dd{margin:0; padding:.3rem 0}
+dl.facts dt{font-weight:600; color:var(--ink)}
+@media (max-width:620px){ dl.facts{grid-template-columns:1fr} dl.facts dt{padding-bottom:0} dl.facts dd{padding-top:0} }
+.credit{font-style:italic; color:var(--faint); margin-top:var(--gap)}
+.credit a{color:var(--faint)}
+a.cite{white-space:nowrap}
+ul.refs{list-style:none; padding-left:0}
+ul.refs li{padding:.35rem 0; line-height:1.5}
+ul.refs li a{color:var(--ink)}
+ul.refs .who{color:var(--faint); font-style:italic}
+
+@media (max-width:620px){
+  main{padding:1.8rem 1.2rem 3rem}
+  h1{font-size:1.55rem}
+  .chat{padding:.9rem}
+}
+@media (prefers-reduced-motion:reduce){ a{transition:none} }

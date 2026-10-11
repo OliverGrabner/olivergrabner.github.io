@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>Oliver Grabner</title>
-<meta name="description" content="CS senior at Texas A&amp;M researching LLMs at InfoLab. Previously Google (Meet) and Samsung.">
+<meta name="description" content="CS senior at Texas A&amp;M researching LLM agents at InfoLab: coding-agent context management and multi-agent evaluation. Previously Google (Meet) and Samsung.">
 <meta name="author" content="Oliver Grabner">
 <link rel="canonical" href="https://olivergrabner.com/">
 
 <meta property="og:title" content="Oliver Grabner - Research @ Texas A&amp;M, Prev @ Google">
-<meta property="og:description" content="CS senior at Texas A&amp;M researching LLMs at InfoLab. Previously Google (Meet) and Samsung.">
+<meta property="og:description" content="CS senior at Texas A&amp;M researching LLM agents at InfoLab: coding-agent context management and multi-agent evaluation. Prev @ Google, Samsung.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://olivergrabner.com/">
 <meta property="og:site_name" content="Oliver Grabner">
@@ -22,7 +22,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Oliver Grabner — LLM Research @ Texas A&amp;M">
-<meta name="twitter:description" content="CS senior at Texas A&amp;M researching LLMs at InfoLab. Previously Google (Meet) and Samsung.">
+<meta name="twitter:description" content="CS senior at Texas A&amp;M researching LLM agents at InfoLab: coding-agent context management and multi-agent evaluation. Previously Google (Meet) and Samsung.">
 <meta name="twitter:image" content="https://olivergrabner.com/img/og.jpg">
 
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -38,7 +38,7 @@
   "image": "https://olivergrabner.com/img/og.jpg",
   "jobTitle": "LLM Researcher",
   "email": "mailto:olivergrabner@tamu.edu",
-  "description": "CS senior at Texas A&M researching LLMs at InfoLab. Previously Google (Meet) and Samsung.",
+  "description": "CS senior at Texas A&M researching LLM agents at InfoLab: coding-agent context management and multi-agent evaluation. Previously Google (Meet) and Samsung.",
   "affiliation": {
     "@type": "CollegeOrUniversity",
     "name": "Texas A&M University",
@@ -50,6 +50,10 @@
   },
   "knowsAbout": [
     "Large Language Models",
+    "LLM Agents",
+    "Agent Context Management",
+    "Multi-Agent Systems",
+    "LLM Evaluation",
     "Natural Language Processing",
     "Speech Recognition",
     "Disfluency Removal",
@@ -213,6 +217,12 @@
   .row .r{flex:0 0 auto; color:var(--faint); font-style:italic; white-space:nowrap}
   .row .l a{color:var(--ink)}
 
+  /* research: title on its own line, a short smaller blurb under it */
+  .current{margin-bottom:.9rem}
+  .current h3{font-size:1em; font-weight:400; margin:0}
+  .current h3 a{color:var(--ink)}
+  .current p{font-size:.92em; max-width:46rem; margin:.15rem 0 0}
+
   /* quiet label inside a section — no rule, ranks below the h2 */
   .subhead{font-family:var(--font); font-size:.92em; font-style:italic; color:var(--faint);
     margin:1.1rem 0 .25rem}
@@ -297,19 +307,32 @@
   <div class="intro">
     <p>
       Hi! I'm Oliver, an undergrad researcher @ Texas A&M <img class="mark" src="img/logos/tamu.png" alt="Texas A&amp;M"> advised by <a href="https://people.engr.tamu.edu/caverlee/">Dr.
-      James Caverlee</a>. I'm currently most interested in agents, reasoning, and evaluations. Previously I interned at
-      <img class="mark google" src="img/logos/old-google-logo.webp" alt="Google"> on the Meet AI
+      James Caverlee</a>. I work on agents, reasoning, and evaluations. Previously I interned at
+      <img class="mark google" src="img/logos/old-google-logo.webp" alt="Google"> on Meet AI
       "<a href="https://workspace.google.com/solutions/ai/ai-note-taking/">Take Notes for Me</a>"
-      backend, and at <a href="https://semiconductor.samsung.com/sas/"><b>Samsung</b></a>
-      <img class="mark mono" src="img/logos/samsung.webp" alt="Samsung">, building async backend services
-      and retrieval for internal agents.
+      backend, and at <a href="https://semiconductor.samsung.com/sas/">Samsung</a>
+      <img class="mark mono" src="img/logos/samsung.webp" alt="Samsung">.
     </p>
     <p>
-      Reach me at <a class="mail" href="mailto:olivergrabner@tamu.edu">olivergrabner@tamu.edu</a>.
+      Reach me at <a class="mail" href="mailto:olivergrabner@tamu.edu">olivergrabner@tamu.edu</a>
     </p>
   </div>
 
-  <h2>Research</h2>
+  <h2>Current Research</h2>
+  <hr>
+
+  <div class="current">
+    <h3><a href="research/pruning/">Plan-guided history pruning for long-horizon coding agents</a></h3>
+    <p>SWE-bench Verified with Qwen3.5-27B: 31% fewer solver input tokens with history pruning agent harness</p>
+  </div>
+
+  <div class="current">
+    <h3><a href="research/pokemon/">Multi-agent LLM
+      coordination in Pokémon 2v2 environment</a></h3>
+    <p>LLM collaboration evaluation in imperfect-information game</p>
+  </div>
+
+  <h2>Publications</h2>
   <hr>
 
   <div class="row">

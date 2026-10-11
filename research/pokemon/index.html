@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Multi-agent LLM coordination in Pokémon · Oliver Grabner</title>
+<meta name="description" content="Two LLM agents share a side in 4-player Pokémon Showdown battles and can talk before every turn. An open environment for measuring whether natural-language coordination wins more, and what it costs.">
+<meta name="author" content="Oliver Grabner">
+<link rel="canonical" href="https://olivergrabner.com/research/pokemon/">
+<meta property="og:title" content="Multi-agent LLM coordination in a Pokémon 2v2 environment">
+<meta property="og:description" content="Two LLM agents share a side in 4-player Pokémon Showdown battles and can talk before every turn. Does talking win more battles, and what does it cost?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://olivergrabner.com/research/pokemon/">
+<meta property="og:site_name" content="Oliver Grabner">
+<meta property="og:image" content="https://olivergrabner.com/research/pokemon/banner-og.jpg">
+<meta name="twitter:image" content="https://olivergrabner.com/research/pokemon/banner-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<script>
+  window.GA_ID = "G-F46CFR3P93";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted',
+    analytics_storage:'granted', functionality_storage:'granted',
+    personalization_storage:'granted', security_storage:'granted'
+  });
+  var ga = document.createElement("script");
+  ga.async = true;
+  ga.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_ID;
+  document.head.appendChild(ga);
+  gtag('js', new Date());
+  var uid = null;
+  try {
+    uid = localStorage.getItem('ga-uid');
+    if (!uid){
+      uid = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2));
+      localStorage.setItem('ga-uid', uid);
+    }
+  } catch (e) {}
+  gtag('config', window.GA_ID, {
+    send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true,
+    ignore_referrer: false, page_referrer: document.referrer || undefined, user_id: uid || undefined
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../page.css">
+<link rel="stylesheet" href="../charts.css">
+<script src="../charts.js" defer></script>
+</head>
+<body>
+<main>
+
+  <a class="back" href="/">← Back to home</a>
+
+  <h1>Multi-agent LLM coordination in a Pokémon 2v2 environment</h1>
+  <p class="date">October 10, 2026</p>
+  <p class="repo"><a class="gh-link" href="https://github.com/OliverGrabner/multi-agent-poke-showdown"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>https://github.com/OliverGrabner/multi-agent-poke-showdown</a></p>
+
+  <img class="hero" src="banner.webp" width="1400" height="788"
+       alt="Two AI teammates planning their moves in a Pokémon-style double battle">
+
+  <p class="lead">
+    The future is in LLM collaborations, and it is important to be able to understand how good agents
+    are at working together, communicating and negotiating actions. Most multi-agent research is about
+    workflows, where agents pass tasks down a pipeline
+    (<a class="cite" href="https://arxiv.org/abs/2308.00352">Hong et al., 2024</a>;
+    <a class="cite" href="https://arxiv.org/abs/2307.07924">Qian et al., 2024</a>). To test this, I built a multi-agent
+    environment on Pokémon Showdown's 2v2 format to evaluate these abilities.
+  </p>
+
+  <figure>
+    <div class="chat" role="group" aria-label="Turn 1 of a real battle">
+      <div class="msg">
+        <span class="who">Qwen3.8-27B - Player 1</span>
+        <p>"Both opps are Water types … so my Fire moves are resisted on both. … I plan to Wisp
+          Dondozo … can you open with Fake Out to flinch one of them this turn?"</p>
+      </div>
+      <div class="msg">
+        <span class="who">Qwen3.8-27B - Player 2</span>
+        <p>"Good call on Wisp-ing Dondozo. Quick correction though - Fighting isn't actually resisted
+          by Water or Ground, so my Close Combat is neutral (1x) on both. … Locking in Fake Out →
+          Whiscash."</p>
+      </div>
+      <div class="act"><span class="who">Qwen3.8-27B - Player 1</span> chose Will-O-Wisp → opposing Dondozo (p4)</div>
+      <div class="act"><span class="who">Qwen3.8-27B - Player 2</span> chose Fake Out → opposing Whiscash (p2)</div>
+    </div>
+    <figcaption>
+      Turn 1 of a real battle between two Qwen3.8-27B teammates (excerpts). They split targets, and
+      one corrects the other's type-matchup mistake before committing.
+      <a href="battle.html">Watch the full battle with team chat</a>.
+    </figcaption>
+  </figure>
+
+  <h2 id="why">Why Pokémon?</h2>
+  <hr>
+  <p>
+    Pokémon doubles is a game-theory environment without full information. The opponents' sets are
+    hidden and damage is random, so winning takes real strategy: reading the other team, splitting
+    targets and planning around your partner. Recent work like the PokéAgent Challenge
+    (<a class="cite" href="https://arxiv.org/abs/2603.15563">Karten et al., 2026</a>) benchmarks Pokémon battling,
+    but each side is played by a single agent, and specialist RL agents still outplay general LLMs
+    there. It doesn't test teammates who have to coordinate.
+  </p>
+  <p>
+    The goal is a controlled environment where I can measure how LLM agents coordinate, and that can
+    later be used to train them with RL to encourage these collaborative behaviors.
+  </p>
+
+  <h2 id="method">Methodology</h2>
+  <hr>
+  <h3>Environment</h3>
+  <p>
+    The official Pokémon Showdown simulator, wrapped as a Gym-style environment. Four players each
+    control one Pokémon from a team of three, two per side.
+  </p>
+  <h3>Agents</h3>
+  <p>
+    Each turn, an agent reads a plain-English summary of the battle and a numbered list of its legal
+    moves. It can <code>say</code> a private message to its partner or <code>choose</code> a move, and
+    once it chooses, its partner is told what it picked.
+  </p>
+  <h3>Talk modes</h3>
+  <p>
+    Free talk (keep talking until both have chosen), one message each, no talk, and one model
+    controlling both Pokémon.
+  </p>
+  <h3>Evaluation</h3>
+  <p>
+    Qwen3.8-27B plays both teammates against a scripted max-damage bot. Battles are seeded and every
+    team draw is played from both sides, so each talk mode faces exactly the same battles.
+  </p>
+
+  <h2 id="results">Results</h2>
+  <hr>
+  <figure>
+    <div class="chart" data-chart>
+      <span class="title">Win rate by talk condition vs. max-damage bot baseline</span>
+      <table class="rows" aria-label="Win rate and tokens per battle by talk condition">
+        <thead><tr><th>Condition</th><th class="barcol"><span class="axis"><span>30%</span><span>50%</span><span>70%</span></span></th><th class="r"></th><th class="r">Tokens per battle</th></tr></thead>
+        <tbody><tr><td>Free talk</td><td class="barcol"><span class="track"><span class="fill grow bg-hero" style="width:85.0%;--d:0.00s"></span></span></td><td class="r val"><b>64%</b></td><td class="r tok val">978k</td></tr><tr><td>One model controls both</td><td class="barcol"><span class="track"><span class="fill grow bg-second" style="width:60.0%;--d:0.08s"></span></span></td><td class="r val">54%</td><td class="r tok val">450k</td></tr><tr><td>One message each</td><td class="barcol"><span class="track"><span class="fill grow bg-second" style="width:55.0%;--d:0.16s"></span></span></td><td class="r val">52%</td><td class="r tok val">654k</td></tr><tr><td>No talk</td><td class="barcol"><span class="track"><span class="fill grow bg-base" style="width:30.0%;--d:0.24s"></span></span></td><td class="r val">42%</td><td class="r tok val">259k</td></tr></tbody>
+      </table>
+    </div>
+  </figure>
+
+  <p>
+    Talking helps. Teammates who could talk freely won 64% of their battles against the scripted
+    bot, while teammates who couldn't talk at all won 42%. Even a single message each (52%) beat no
+    talk. One model controlling both Pokémon (54%) did better than no talk but worse than two agents
+    talking freely, so I think the gain comes from the conversation itself, not just from one mind
+    planning both moves.
+  </p>
+  <p>
+    Talking also costs. Free talk used 978k prompt tokens per battle, 3.8x the 259k of no talk, since
+    every message means another model call that re-reads the battle and the conversation so far.
+  </p>
+
+  <figure>
+    <div class="chart" data-chart>
+      <span class="title"><span class="model"><svg class="lab" viewBox="0 0 24 24" fill="#615ced" fill-rule="evenodd" aria-hidden="true"><path d="M12.604 1.34c.393.69.784 1.382 1.174 2.075a.18.18 0 00.157.091h5.552c.174 0 .322.11.446.327l1.454 2.57c.19.337.24.478.024.837-.26.43-.513.864-.76 1.3l-.367.658c-.106.196-.223.28-.04.512l2.652 4.637c.172.301.111.494-.043.77-.437.785-.882 1.564-1.335 2.34-.159.272-.352.375-.68.37-.777-.016-1.552-.01-2.327.016a.099.099 0 00-.081.05 575.097 575.097 0 01-2.705 4.74c-.169.293-.38.363-.725.364-.997.003-2.002.004-3.017.002a.537.537 0 01-.465-.271l-1.335-2.323a.09.09 0 00-.083-.049H4.982c-.285.03-.553-.001-.805-.092l-1.603-2.77a.543.543 0 01-.002-.54l1.207-2.12a.198.198 0 000-.197 550.951 550.951 0 01-1.875-3.272l-.79-1.395c-.16-.31-.173-.496.095-.965.465-.813.927-1.625 1.387-2.436.132-.234.304-.334.584-.335a338.3 338.3 0 012.589-.001.124.124 0 00.107-.063l2.806-4.895a.488.488 0 01.422-.246c.524-.001 1.053 0 1.583-.006L11.704 1c.341-.003.724.032.9.34zm-3.432.403a.06.06 0 00-.052.03L6.254 6.788a.157.157 0 01-.135.078H3.253c-.056 0-.07.025-.041.074l5.81 10.156c.025.042.013.062-.034.063l-2.795.015a.218.218 0 00-.2.116l-1.32 2.31c-.044.078-.021.118.068.118l5.716.008c.046 0 .08.02.104.061l1.403 2.454c.046.081.092.082.139 0l5.006-8.76.783-1.382a.055.055 0 01.096 0l1.424 2.53a.122.122 0 00.107.062l2.763-.02a.04.04 0 00.035-.02.041.041 0 000-.04l-2.9-5.086a.108.108 0 010-.113l.293-.507 1.12-1.977c.024-.041.012-.062-.035-.062H9.2c-.059 0-.073-.026-.043-.077l1.434-2.505a.107.107 0 000-.114L9.225 1.774a.06.06 0 00-.053-.031zm6.29 8.02c.046 0 .058.02.034.06l-.832 1.465-2.613 4.585a.056.056 0 01-.05.029.058.058 0 01-.05-.029L8.498 9.841c-.02-.034-.01-.052.028-.054l.216-.012 6.722-.012z"/></svg>Qwen3.8-27B team with free talk, against</span></span>
+      <table class="rows" aria-label="Win rate of a Qwen3.8-27B team against each opponent">
+        <thead><tr><th>Opponent</th><th class="barcol">Win rate</th><th class="r"></th></tr></thead>
+        <tbody><tr><td><span class="model"><svg class="lab" viewBox="0 0 24 24" fill="#615ced" fill-rule="evenodd" aria-hidden="true"><path d="M12.604 1.34c.393.69.784 1.382 1.174 2.075a.18.18 0 00.157.091h5.552c.174 0 .322.11.446.327l1.454 2.57c.19.337.24.478.024.837-.26.43-.513.864-.76 1.3l-.367.658c-.106.196-.223.28-.04.512l2.652 4.637c.172.301.111.494-.043.77-.437.785-.882 1.564-1.335 2.34-.159.272-.352.375-.68.37-.777-.016-1.552-.01-2.327.016a.099.099 0 00-.081.05 575.097 575.097 0 01-2.705 4.74c-.169.293-.38.363-.725.364-.997.003-2.002.004-3.017.002a.537.537 0 01-.465-.271l-1.335-2.323a.09.09 0 00-.083-.049H4.982c-.285.03-.553-.001-.805-.092l-1.603-2.77a.543.543 0 01-.002-.54l1.207-2.12a.198.198 0 000-.197 550.951 550.951 0 01-1.875-3.272l-.79-1.395c-.16-.31-.173-.496.095-.965.465-.813.927-1.625 1.387-2.436.132-.234.304-.334.584-.335a338.3 338.3 0 012.589-.001.124.124 0 00.107-.063l2.806-4.895a.488.488 0 01.422-.246c.524-.001 1.053 0 1.583-.006L11.704 1c.341-.003.724.032.9.34zm-3.432.403a.06.06 0 00-.052.03L6.254 6.788a.157.157 0 01-.135.078H3.253c-.056 0-.07.025-.041.074l5.81 10.156c.025.042.013.062-.034.063l-2.795.015a.218.218 0 00-.2.116l-1.32 2.31c-.044.078-.021.118.068.118l5.716.008c.046 0 .08.02.104.061l1.403 2.454c.046.081.092.082.139 0l5.006-8.76.783-1.382a.055.055 0 01.096 0l1.424 2.53a.122.122 0 00.107.062l2.763-.02a.04.04 0 00.035-.02.041.041 0 000-.04l-2.9-5.086a.108.108 0 010-.113l.293-.507 1.12-1.977c.024-.041.012-.062-.035-.062H9.2c-.059 0-.073-.026-.043-.077l1.434-2.505a.107.107 0 000-.114L9.225 1.774a.06.06 0 00-.053-.031zm6.29 8.02c.046 0 .058.02.034.06l-.832 1.465-2.613 4.585a.056.056 0 01-.05.029.058.058 0 01-.05-.029L8.498 9.841c-.02-.034-.01-.052.028-.054l.216-.012 6.722-.012z"/></svg>Qwen3.5-2B team</span></td><td class="barcol"><span class="track"><span class="fill grow bg-hero" style="width:96%;--d:0.00s"></span></span></td><td class="r val"><b>96%</b></td></tr><tr><td><span class="model"><svg class="lab" viewBox="0 0 24 24" fill="#615ced" fill-rule="evenodd" aria-hidden="true"><path d="M12.604 1.34c.393.69.784 1.382 1.174 2.075a.18.18 0 00.157.091h5.552c.174 0 .322.11.446.327l1.454 2.57c.19.337.24.478.024.837-.26.43-.513.864-.76 1.3l-.367.658c-.106.196-.223.28-.04.512l2.652 4.637c.172.301.111.494-.043.77-.437.785-.882 1.564-1.335 2.34-.159.272-.352.375-.68.37-.777-.016-1.552-.01-2.327.016a.099.099 0 00-.081.05 575.097 575.097 0 01-2.705 4.74c-.169.293-.38.363-.725.364-.997.003-2.002.004-3.017.002a.537.537 0 01-.465-.271l-1.335-2.323a.09.09 0 00-.083-.049H4.982c-.285.03-.553-.001-.805-.092l-1.603-2.77a.543.543 0 01-.002-.54l1.207-2.12a.198.198 0 000-.197 550.951 550.951 0 01-1.875-3.272l-.79-1.395c-.16-.31-.173-.496.095-.965.465-.813.927-1.625 1.387-2.436.132-.234.304-.334.584-.335a338.3 338.3 0 012.589-.001.124.124 0 00.107-.063l2.806-4.895a.488.488 0 01.422-.246c.524-.001 1.053 0 1.583-.006L11.704 1c.341-.003.724.032.9.34zm-3.432.403a.06.06 0 00-.052.03L6.254 6.788a.157.157 0 01-.135.078H3.253c-.056 0-.07.025-.041.074l5.81 10.156c.025.042.013.062-.034.063l-2.795.015a.218.218 0 00-.2.116l-1.32 2.31c-.044.078-.021.118.068.118l5.716.008c.046 0 .08.02.104.061l1.403 2.454c.046.081.092.082.139 0l5.006-8.76.783-1.382a.055.055 0 01.096 0l1.424 2.53a.122.122 0 00.107.062l2.763-.02a.04.04 0 00.035-.02.041.041 0 000-.04l-2.9-5.086a.108.108 0 010-.113l.293-.507 1.12-1.977c.024-.041.012-.062-.035-.062H9.2c-.059 0-.073-.026-.043-.077l1.434-2.505a.107.107 0 000-.114L9.225 1.774a.06.06 0 00-.053-.031zm6.29 8.02c.046 0 .058.02.034.06l-.832 1.465-2.613 4.585a.056.056 0 01-.05.029.058.058 0 01-.05-.029L8.498 9.841c-.02-.034-.01-.052.028-.054l.216-.012 6.722-.012z"/></svg>Qwen3.5-9B team</span></td><td class="barcol"><span class="track"><span class="fill grow bg-second" style="width:74%;--d:0.08s"></span></span></td><td class="r val">74%</td></tr><tr><td><span class="model"><span class="lab blank" aria-hidden="true"></span>Scripted bot</span></td><td class="barcol"><span class="track"><span class="fill grow bg-second" style="width:64%;--d:0.16s"></span></span></td><td class="r val">64%</td></tr></tbody>
+      </table>
+    </div>
+  </figure>
+
+  <p>
+    I also checked that the environment can tell models apart. A Qwen3.8-27B team won 96% of its
+    battles against a team of 2B models and 74% against a team of 9B models, compared with 64% against
+    the scripted bot. The stronger the opponent, the closer the games, which is what makes the
+    environment usable as a benchmark for comparing models.
+  </p>
+
+  <h2 id="next">Next</h2>
+  <hr>
+  <p>
+    I'm separating the effect of talking from the effect of seeing your partner's move. I'm also
+    looking into turning the environment into a benchmark with a leaderboard across models, and using
+    it for RL training to encourage collaborative behaviors.
+  </p>
+
+  <h2 id="thanks">Thanks</h2>
+  <hr>
+  <p>
+    Through this project I wanted to learn more about agent collaboration and RL environments, and
+    thought I'd share the results! I ran these experiments on Texas A&amp;M's Grace cluster. Thank you
+    to Maria Teleki and to my advisor,
+    <a href="https://people.engr.tamu.edu/caverlee/">Prof. James Caverlee</a>, for the guidance and
+    feedback along the way.
+  </p>
+
+  <p class="links-row">
+    <a href="battle.html">Watch a battle</a>
+    <a href="/">← Back to home</a>
+  </p>
+
+</main>
+</body>
+</html>

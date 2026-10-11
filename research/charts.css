@@ -1,0 +1,105 @@
+/* Charts on research pages: thin bars on a light track, hover values, grow-in on scroll.
+   Colors use the site's link blue; page.css supplies --paper, --ink, --faint and --rule. */
+:root{
+  --c-hero:#1a73e8;
+  --c-second:#6aa0ec;
+  --c-base:#b5ada3;
+  --c-accent:#c4614f;
+  --track:#ece6de;
+  --line:#e4ded5;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+.chart{background:var(--paper); border:1px solid var(--rule); padding:14px 18px 16px}
+.chart .title{display:block; font-size:.86em; font-style:italic; color:var(--faint); margin:0 0 8px}
+.chart svg{display:block; width:100%; height:auto}
+.model{display:inline-flex; align-items:center; gap:7px}
+.chart svg.lab, .lab{display:inline-block; width:15px; height:15px; flex:none}
+.svgwrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
+@media (max-width:620px){ .svgwrap svg{min-width:540px} }
+
+.bg-hero{background:var(--c-hero)}
+.bg-second{background:var(--c-second)}
+.bg-base{background:var(--c-base)}
+.bg-accent{background:var(--c-accent)}
+.s-hero{stroke:var(--c-hero)}
+.s-base{stroke:var(--c-base)}
+.t-hero{fill:var(--c-hero)}
+.t-base{fill:var(--c-base)}
+
+/* rows of bars */
+table.rows{width:100%; border-collapse:collapse; font-size:.95em}
+table.rows th{font-weight:400; font-style:italic; font-size:.84em; color:var(--faint); text-align:left;
+  padding:0 8px 7px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+table.rows td{height:44px; padding:0 8px 0 0; border-bottom:1px solid var(--line); color:var(--ink); white-space:nowrap}
+table.rows tbody tr:last-child td{border-bottom:0}
+table.rows .barcol{width:58%}
+table.rows .r{text-align:right; padding-right:0; font-variant-numeric:tabular-nums}
+table.rows th.r, table.rows td.tok{padding-left:14px}
+table.rows td.tok{color:var(--faint); width:1%}
+table.rows .axis{display:flex; justify-content:space-between}
+
+table.rows.variants td{height:auto; padding-top:9px; padding-bottom:9px}
+table.rows.variants td:first-child{white-space:normal}
+table.rows.variants .sub{display:block; font-size:.84em; color:var(--faint); line-height:1.35}
+table.rows.variants .barcol{width:34%}
+table.rows.variants td.r:nth-child(2){padding-right:16px; color:var(--faint)}
+table.rows.variants th:nth-child(2){padding-right:16px; text-align:right}
+table.rows.variants .barcol{padding-left:4px}
+table.rows tr.muted td{color:var(--faint)}
+@media (max-width:480px){
+  table.rows.variants .barcol{display:none}
+  table.rows.variants td:first-child{min-width:9rem}
+}
+
+.track{position:relative; display:block; height:12px; background:var(--track); border-radius:0 4px 4px 0}
+.fill{position:absolute; top:0; bottom:0; left:0; border-radius:0 4px 4px 0}
+.fill.joined{border-radius:0}
+.fill.end{min-width:6px}
+
+/* hover or focus a bar to see its value */
+.fill[data-tip]{cursor:default; outline:none}
+.fill[data-tip]::after{content:attr(data-tip); position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%);
+  white-space:nowrap; font-size:12.5px; line-height:1.4; color:var(--ink); background:var(--paper); border:1px solid var(--rule);
+  padding:3px 9px; opacity:0; pointer-events:none; transition:opacity .15s ease-out; z-index:2}
+.fill[data-tip]:hover::after, .fill[data-tip]:focus-visible::after{opacity:1}
+.fill[data-tip]:hover, .fill[data-tip]:focus-visible{filter:brightness(1.08)}
+
+/* the same tooltip for lines and dots inside an svg, placed by charts.js */
+.chart-tip{position:absolute; left:0; top:0; z-index:10; white-space:pre; font-family:"Lora",Georgia,serif;
+  font-size:12.5px; line-height:1.4; color:var(--ink); background:var(--paper); border:1px solid var(--rule);
+  padding:3px 9px; opacity:0; pointer-events:none; transition:opacity .15s ease-out}
+.chart-tip.on{opacity:1}
+.chart-tip .tip-row{display:flex; align-items:center; gap:7px}
+.chart-tip .sw{width:10px; height:10px; flex:none}
+.chart svg [data-tip]{cursor:default; outline:none}
+.step-guide, .step-dot{opacity:0; pointer-events:none; transition:opacity .12s ease-out}
+.step-guide.on, .step-dot.on{opacity:1}
+.step-hit{cursor:crosshair; outline:none}
+.pt:hover .dot, .pt:focus-visible .dot{fill-opacity:1; stroke:var(--ink)}
+
+/* animation: charts.js arms a chart and plays it once it scrolls into view */
+[data-chart].armed .grow{transform:scaleX(0); transform-origin:left center}
+[data-chart].armed .val, [data-chart].armed .late{opacity:0}
+[data-chart].armed .draw{stroke-dasharray:1; stroke-dashoffset:1}
+[data-chart].in .grow{animation:chart-grow 1.6s var(--ease) var(--d,0s) both}
+[data-chart].in .val{animation:chart-fade .3s ease-out calc(var(--d,0s) + 1.1s) both}
+[data-chart].in .late{animation:chart-fade .4s ease-out var(--d,1s) both}
+[data-chart].in .draw{animation:chart-draw 1.8s var(--ease) var(--d,0s) both}
+@keyframes chart-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes chart-fade{from{opacity:0}to{opacity:1}}
+@keyframes chart-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){ [data-chart] *{animation:none !important; transition:none !important} }
+@media print{ [data-chart].armed .grow{transform:none} [data-chart].armed .val, [data-chart].armed .late{opacity:1} [data-chart].armed .draw{stroke-dasharray:none} }
+
+@media (max-width:620px){
+  .chart{padding:12px}
+  table.rows{font-size:.88em}
+  table.rows .barcol{width:42%}
+  table.rows th.r, table.rows td.tok{padding-left:8px}
+}
+@media (max-width:420px){
+  table.rows td:first-child{white-space:normal; line-height:1.25; padding-right:10px}
+  table.rows .barcol{width:34%}
+  table.rows th{font-size:.78em}
+}
