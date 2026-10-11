@@ -77,10 +77,13 @@ code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.86
 .hero{display:block; width:100%; height:auto; border:1px solid var(--rule); margin:0 0 1.8rem}
 .date + .repo{margin-top:-1.2rem}
 .repo{margin:0 0 1.6rem}
+.repo + .repo{margin-top:-1.2rem}
 .gh-link{display:inline-flex; align-items:center; gap:.35rem; color:var(--blue); text-decoration:underline;
   text-decoration-color:rgba(26,115,232,.6); text-underline-offset:.16em}
 .gh-link svg{width:15px; height:15px; fill:currentColor; flex:none}
 .gh-link:hover{color:#0d47a1; text-decoration-color:#0d47a1}
+.arrow{display:inline-block; text-decoration:none; font-style:normal; color:var(--faint); font-size:.85em; margin-left:.18em}
+a:hover .arrow{color:var(--blue)}
 h3{font-size:1em; font-weight:600; color:var(--ink); margin:1.5rem 0 .4rem}
 p code, li code, td code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.84em; color:var(--ink)}
 ol.steps{padding-left:1.4rem}
